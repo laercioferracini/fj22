@@ -1,6 +1,7 @@
 package br.com.ferracini.argentum.modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author lferracini
@@ -53,5 +54,17 @@ public class Candlestick {
     }
     public boolean isBaixa(){
         return this.abertura > this.fechamento;
+    }
+
+    @Override
+    public String toString() {
+        return "Candle [" +
+                "Abertura: " + abertura +
+                ", Fechamento: " + fechamento +
+                ", Minimo: " + minimo +
+                ", Maximo: " + maximo +
+                ", Volume: " + volume +
+                ", Data: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ']';
     }
 }
