@@ -17,3 +17,6 @@ Repositório para aplicar os estudos da apostila fj22
 Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.  
 
 
+### **Effective Java**
+* Item 1: Considere utilizar Factory com métodos estáticos em vez de construtores
+
