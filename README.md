@@ -4,8 +4,16 @@
 
 Repositório para aplicar os estudos da apostila fj22  
 
+
+
 # Projeto Argentum  
 
+##### Tecnologias
+* Java 11
+* Gradle
+* Junit 5
+
+##### Modelando o sistema
 * Trabalhando com dinheiro usando o BigDecimal  
 * Imutabilidade de objetos  
 
