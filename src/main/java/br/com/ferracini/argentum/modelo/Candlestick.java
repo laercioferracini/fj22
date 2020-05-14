@@ -1,5 +1,6 @@
 package br.com.ferracini.argentum.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,14 +11,14 @@ import java.time.format.DateTimeFormatter;
  */
 public class Candlestick {
 
-    private final double abertura;
-    private final double fechamento;
-    private final double minimo;
-    private final double maximo;
-    private final double volume;
+    private final BigDecimal abertura;
+    private final BigDecimal fechamento;
+    private final BigDecimal minimo;
+    private final BigDecimal maximo;
+    private final BigDecimal volume;
     private final LocalDateTime data;
 
-    public Candlestick(double abertura, double fechamento, double minimo, double maximo, double volume, LocalDateTime data) {
+    public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, LocalDateTime data) {
         this.abertura = abertura;
         this.fechamento = fechamento;
         this.minimo = minimo;
@@ -26,34 +27,36 @@ public class Candlestick {
         this.data = data;
     }
 
-    public double getAbertura() {
+    public BigDecimal getAbertura() {
         return abertura;
     }
 
-    public double getFechamento() {
+    public BigDecimal getFechamento() {
         return fechamento;
     }
 
-    public double getMinimo() {
+    public BigDecimal getMinimo() {
         return minimo;
     }
 
-    public double getMaximo() {
+    public BigDecimal getMaximo() {
         return maximo;
     }
 
-    public double getVolume() {
+    public BigDecimal getVolume() {
         return volume;
     }
 
     public LocalDateTime getData() {
         return data;
     }
-    public boolean isAlta(){
-        return this.abertura < this.fechamento;
+
+    public boolean isAlta() {
+        return this.abertura.compareTo(this.fechamento) < 0;
     }
-    public boolean isBaixa(){
-        return this.abertura > this.fechamento;
+
+    public boolean isBaixa() {
+        return this.abertura.compareTo(this.fechamento) > 0;
     }
 
     @Override

@@ -6,6 +6,7 @@ import br.com.ferracini.argentum.modelo.Negociacao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -27,25 +28,25 @@ class CandlestickFactoryTest {
     void constroiCandleParaData() {
         LocalDateTime hoje = LocalDateTime.now();
 
-        Negociacao negociacao1 = new Negociacao(40.5, 100, hoje);
-        Negociacao negociacao2 = new Negociacao(45.5, 100, hoje);
-        Negociacao negociacao3 = new Negociacao(39.8, 100, hoje);
-        Negociacao negociacao4 = new Negociacao(42.3, 100, hoje);
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.5), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(42.3), 100, hoje);
 
         List<Negociacao> negociacaoList = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
         //EFFECTIVE JAVA
         //ITEM 47: Conheça e use as bibliotecas
-        double volume = negociacaoList.stream().mapToDouble(e -> e.getPreco() * e.getQuantidade()).sum();
+        double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
         Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
-                () -> assertEquals(40.5, candle.getAbertura()),
-                () -> assertEquals(42.3, candle.getFechamento()),
-                () -> assertEquals(39.8, candle.getMinimo()),
-                () -> assertEquals(45.5, candle.getMaximo()),
-                () -> assertEquals(volume, candle.getVolume())
+                () -> assertEquals(BigDecimal.valueOf(40.50), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(42.30), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(39.80), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(45.50), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume())
         );
         System.out.println(candle.toString());
 

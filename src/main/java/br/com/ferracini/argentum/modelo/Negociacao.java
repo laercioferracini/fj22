@@ -1,5 +1,6 @@
 package br.com.ferracini.argentum.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -9,17 +10,17 @@ import java.time.LocalDateTime;
  */
 public final class Negociacao {
 
-    private final double preco;
+    private final BigDecimal preco;
     private final int quantidade;
     private final LocalDateTime data;
 
-    public Negociacao(double preco, int quantidade, LocalDateTime data) {
+    public Negociacao(BigDecimal preco, int quantidade, LocalDateTime data) {
         this.preco = preco;
         this.quantidade = quantidade;
         this.data = data;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
@@ -31,7 +32,7 @@ public final class Negociacao {
         return data;
     }
 
-    public double getVolume() {
-        return preco * quantidade;
+    public BigDecimal getVolume() {
+        return preco.multiply(BigDecimal.valueOf(quantidade));
     }
 }
