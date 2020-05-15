@@ -49,6 +49,7 @@ esqueça tudo e apenas ‘hackeie’.*
 
 *"Apenas duas coisas são infinitas: o universo e a estupidez humana. E eu não tenho certeza do primeiro."*
 
- – **Albert Einstein**
+– **Albert Einstein**
  
- 
+*Simplicity is the ultimate sophistication.*
+–  **Leonardo da Vinci**
