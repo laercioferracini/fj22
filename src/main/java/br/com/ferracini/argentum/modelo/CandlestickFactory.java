@@ -14,16 +14,10 @@ public class CandlestickFactory {
         BigDecimal maximo;
         BigDecimal minimo;
         BigDecimal volume;
-        if (negociacoes.size() == 1) {
-            maximo = negociacoes.get(0).getPreco();
-            minimo = negociacoes.get(0).getPreco();
+            maximo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
+            minimo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
             volume = BigDecimal.ZERO;
-        } else {
 
-            maximo = BigDecimal.ZERO;
-            minimo = BigDecimal.valueOf(Double.MAX_VALUE);
-            volume = BigDecimal.ZERO;
-        }
         for (Negociacao negociacao : negociacoes) {
             volume = volume.add(negociacao.getVolume());
             if (negociacao.getPreco().compareTo(maximo) > 0) {

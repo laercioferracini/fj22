@@ -87,9 +87,9 @@ class CandlestickFactoryTest {
         CandlestickFactory factory = new CandlestickFactory();
         Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
         assertAll("Verificando candlestick",
-                () -> assertEquals(BigDecimal.ZERO, candle.getAbertura()),
-                () -> assertEquals(BigDecimal.ZERO, candle.getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(Double.MAX_VALUE), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.ZERO, candle.getAbertura(), "Verificando abertura"),
+                () -> assertEquals(BigDecimal.ZERO, candle.getFechamento(), "Verificando fechamento"),
+                () -> assertEquals(BigDecimal.ZERO, candle.getMinimo(), "Verificando minimo"),
                 () -> assertEquals(BigDecimal.ZERO, candle.getMaximo()),
                 () -> assertEquals(BigDecimal.ZERO, candle.getVolume())
         );
