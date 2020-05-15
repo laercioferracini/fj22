@@ -15,10 +15,12 @@ public final class Negociacao {
     private final LocalDateTime data;
 
     public Negociacao(BigDecimal preco, int quantidade, LocalDateTime data) {
+        if (data == null) throw new IllegalArgumentException("data não pode ser nula");
         this.preco = preco;
         this.quantidade = quantidade;
         this.data = data;
     }
+
 
     public BigDecimal getPreco() {
         return preco;

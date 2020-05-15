@@ -34,6 +34,7 @@ Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.
 * Item 10: Sempre reescreva o ```toString```
 * Item 15: Minimize mutabilidade
 * Item 47: Conheça e use as bibliotecas
+* Item 39: Faça cópias defensivas quando necessário.
 
 ---
 #### Quotes
