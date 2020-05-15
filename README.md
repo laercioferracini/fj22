@@ -15,7 +15,9 @@ Repositório para aplicar os estudos da apostila fj22
 
 ##### Modelando o sistema
 * Trabalhando com dinheiro usando o BigDecimal  
-* Imutabilidade de objetos  
+* Imutabilidade de objetos
+* Resumo diário das Negociações
+  
 
 ### Classe imutável  
 * Nenhum método pode modificar seu estado  
@@ -28,4 +30,25 @@ Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.
 
 ### **Effective Java**
 * Item 1: Considere utilizar Factory com métodos estáticos em vez de construtores
+* Item 2: Considere usar um builder se o construtor tiver muitos parâmetros
+* Item 10: Sempre reescreva o ```toString```
+* Item 15: Minimize mutabilidade
+* Item 47: Conheça e use as bibliotecas
 
+---
+#### Quotes
+*“Na maioria dos casos, as pessoas, inclusive os facínoras, são muito mais ingênuas e simples do que
+ costumamos achar. Aliás, nós também.”*
+ 
+– **Fiodór Dostoiévski**, em Irmãos Karamazov
+
+*“Primeiro aprenda ciência da computação e toda a teoria. Depois desenvolva um estilo de programação. E aí
+esqueça tudo e apenas ‘hackeie’.*
+
+– **George Carrette**
+
+*"Apenas duas coisas são infinitas: o universo e a estupidez humana. E eu não tenho certeza do primeiro."*
+
+ – **Albert Einstein**
+ 
+ 
