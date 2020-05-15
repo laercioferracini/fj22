@@ -98,8 +98,8 @@ class CandlestickFactoryTest {
     }
 
     @Test
-    @DisplayName(value = "construir candle negociacoes crescente corretamente")
-    void constroiCandleComUmaNegociacoesCrescente() {
+    @DisplayName(value = "construir candle negociacoes em ordem crescente corretamente")
+    void constroiCandleComUmaNegociacoesEmOrdemCrescente() {
         LocalDateTime hoje = LocalDateTime.now();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
@@ -116,16 +116,16 @@ class CandlestickFactoryTest {
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.50), candle.getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(42.30), candle.getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(39.80), candle.getMinimo()),
-                () -> assertEquals(BigDecimal.valueOf(45.50), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(49.80), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(40.50), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(49.80), candle.getMaximo()),
                 () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume())
         );
         System.out.println(candle.toString());
     }
     @Test
-    @DisplayName(value = "construir candle negociacoes decrescente corretamente")
-    void constroiCandleComUmaNegociacoesDecrescente() {
+    @DisplayName(value = "construir candle negociacoes em ordem  decrescente corretamente")
+    void constroiCandleComUmaNegociacoesEmOrdemDecrescente() {
         LocalDateTime hoje = LocalDateTime.now();
 
         Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(49.8), 100, hoje);
@@ -142,10 +142,10 @@ class CandlestickFactoryTest {
         Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
-                () -> assertEquals(BigDecimal.valueOf(40.50), candle.getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(42.30), candle.getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(39.80), candle.getMinimo()),
-                () -> assertEquals(BigDecimal.valueOf(45.50), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(49.80), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(40.50), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(40.50), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(49.80), candle.getMaximo()),
                 () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume())
         );
         System.out.println(candle.toString());
