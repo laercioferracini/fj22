@@ -1,5 +1,7 @@
-package br.com.ferracini.argentum.modelo;
+package br.com.ferracini.argentum.testes;
 
+import br.com.ferracini.argentum.modelo.CandleBuilder;
+import br.com.ferracini.argentum.modelo.Candlestick;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

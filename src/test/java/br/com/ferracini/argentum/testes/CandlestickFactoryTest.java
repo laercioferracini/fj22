@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -166,5 +165,13 @@ class CandlestickFactoryTest {
                 () -> assertEquals(BigDecimal.valueOf(40.5), candle.getMaximo()),
                 () -> assertEquals(BigDecimal.valueOf(4050.0), candle.getVolume())
         );
+    }
+
+    @Test
+    void precoMaximoNaoPodeSerMenorQueMinimo() {
+        Throwable throwable = assertThrows(IllegalArgumentException.class,
+                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
+                        BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
+        assertEquals("Valor máximo não poder ser menor que o valor mínimo", throwable.getMessage());
     }
 }
