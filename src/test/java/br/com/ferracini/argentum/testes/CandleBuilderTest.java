@@ -40,4 +40,15 @@ class CandleBuilderTest {
         System.out.println(candle.toString());
 
     }
+
+    @Test
+    void geracaoDeCandleDeveTerTodosOsDadosNecessarios() {
+        //TODO 1) Crie um teste para o CandleBuilder. Ele possui um grande erro: se só chamarmos alguns dos métodos,
+        //e não todos, ele construirá um Candle inválido, com data nula, ou algum número zerado.
+        //Faça um teste geracaoDeCandleDeveTerTodosOsDadosNecessarios que tente isso. O método geraCandle
+        //deveria lançar outra exception conhecida da biblioteca Java, a IllegalStateException, quando invocado
+        //antes dos seus outros seis métodos já terem sido.
+        //O teste deve falhar. Corrija-o criando booleans que indicam se cada método setter foi invocado, ou utilizando alguma outra forma de vericação
+
+    }
 }

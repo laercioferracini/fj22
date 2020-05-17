@@ -187,4 +187,14 @@ class CandlestickFactoryTest {
         );
         System.out.println(candle.toString());
     }
+
+    @Test
+    void quandoAberturaIgualFechamentoEhAlta() {
+        //TODO 2) Se você fez os opcionais do primeiro exercício do capítulo anterior (criação do projeto e dos modelos)
+        //você tem os métodos isAlta e isBaixa na classe Candlestick. Contudo, temos um comportamento não
+        //especificado nesses métodos: e quando o preço de abertura for igual ao de fechamento?
+        //Perguntando para nosso cliente, ele nos informou que, nesse caso, o candle deve ser considerado de alta.
+        //Crie o teste quandoAberturaIgualFechamentoEhAlta dentro de CandlestickTest, verifique se isso está
+        //ocorrendo. Se o teste falhar, faça mudanças no seu código para que a barra volte a ficar verde!
+    }
 }
