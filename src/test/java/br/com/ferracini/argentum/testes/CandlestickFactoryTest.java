@@ -116,7 +116,7 @@ class CandlestickFactoryTest {
         Throwable throwable = assertThrows(IllegalArgumentException.class,
                 () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
                         BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
-        assertEquals("Valor máximo não poder ser menor que o valor mínimo", throwable.getMessage());
+        assertEquals("Valor máximo não poder ser menor que o valor mínim", throwable.getMessage());
     }
 
     @Test

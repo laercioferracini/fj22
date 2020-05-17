@@ -47,6 +47,7 @@ public class CandleBuilder {
     }
 
     public Candlestick geraCandle() {
+        if (abertura == null) throw new IllegalStateException("abertura não pode ser nula");
         return new Candlestick(abertura, fechamento, minimo, maximo, volume, data);
     }
 }

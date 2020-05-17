@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author lferracini
@@ -45,10 +44,16 @@ class CandleBuilderTest {
     void geracaoDeCandleDeveTerTodosOsDadosNecessarios() {
         //TODO 1) Crie um teste para o CandleBuilder. Ele possui um grande erro: se só chamarmos alguns dos métodos,
         //e não todos, ele construirá um Candle inválido, com data nula, ou algum número zerado.
-        //Faça um teste geracaoDeCandleDeveTerTodosOsDadosNecessarios que tente isso. O método geraCandle
+        //Faça um teste geracaoDeCandleDeveTerTodosOsDadosNecessarios que teste isso. O método geraCandle
         //deveria lançar outra exception conhecida da biblioteca Java, a IllegalStateException, quando invocado
         //antes dos seus outros seis métodos já terem sido.
-        //O teste deve falhar. Corrija-o criando booleans que indicam se cada método setter foi invocado, ou utilizando alguma outra forma de vericação
+        //O teste deve falhar. Corrija-o criando booleans que indicam se cada método setter foi invocado, ou utilizando alguma outra forma de verificação
+
+        Throwable t = assertThrows(RuntimeException.class, () -> new CandleBuilder()
+                .geraCandle());
+
+
+        assertEquals("abertura não pode ser nul", t.getMessage(), "abertura não pode ser nula");
 
     }
 }
