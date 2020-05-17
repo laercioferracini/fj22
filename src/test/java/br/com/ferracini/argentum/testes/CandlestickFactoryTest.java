@@ -78,7 +78,7 @@ class CandlestickFactoryTest {
     }
 
     @Test
-    void constroiCandleSemNegociacoesCorretamente() {
+    void semNegociacoesGeraCandleComZerosCorretamente() {
         LocalDateTime hoje = LocalDateTime.now();
 
         List<Negociacao> negociacaoList = Collections.emptyList();
@@ -96,8 +96,43 @@ class CandlestickFactoryTest {
     }
 
     @Test
+    public void apenasUmaNegociacaoGeraCandleComValoresIguais() {
+        LocalDateTime hoje = LocalDateTime.now();
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        var negociacoes = Collections.singletonList(negociacao1);
+        var fabrica = new CandlestickFactory();
+        var candle = fabrica.constroiCandleParaData(hoje, negociacoes);
+        assertAll("Verificando candle com valores iguais",
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(4050.0), candle.getVolume())
+        );
+    }
+
+    @Test
+    void precoMaximoNaoPodeSerMenorQueMinimo() {
+        Throwable throwable = assertThrows(IllegalArgumentException.class,
+                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
+                        BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
+        assertEquals("Valor máximo não poder ser menor que o valor mínimo", throwable.getMessage());
+    }
+
+    @Test
+    void precoNaoPodeSerNulo() {
+        //5) (opcional) Um Candlestick pode ter data nula? Pode ter algum valor negativo?
+        Throwable throwable = assertThrows(IllegalArgumentException.class,
+                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
+                        BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(10000), null));
+        assertEquals("Data não pode ser nula", throwable.getMessage(), "Campo data");
+    }
+
+    @Test
     @DisplayName(value = "construir candle negociacoes em ordem crescente corretamente")
-    void constroiCandleComNegociacoesEmOrdemCrescenteCorretamente() {
+    void negociacoesEmOrdemCrescenteDeValorCorretamente() {
+        //6) (opcional) Crie mais dois testes na CandlestickFactoryTest: o negociacoesEmOrdemCrescenteDeValor
+        //e negociacoesEmOrdemDecrescenteDeValor, que devem fazer o que o próprio nome diz
         LocalDateTime hoje = LocalDateTime.now();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
@@ -125,7 +160,9 @@ class CandlestickFactoryTest {
 
     @Test
     @DisplayName(value = "construir candle negociacoes em ordem  decrescente corretamente")
-    void constroiCandleComNegociacoesEmOrdemDecrescenteCorretamente() {
+    void negociacoesEmOrdemDecrescenteDeValorCorretamente() {
+        //6) (opcional) Crie mais dois testes na CandlestickFactoryTest: o negociacoesEmOrdemCrescenteDeValor
+        //e negociacoesEmOrdemDecrescenteDeValor, que devem fazer o que o próprio nome diz
         LocalDateTime hoje = LocalDateTime.now();
 
         Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(49.8), 100, hoje);
@@ -149,29 +186,5 @@ class CandlestickFactoryTest {
                 () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume())
         );
         System.out.println(candle.toString());
-    }
-
-    @Test
-    public void apenasUmaNegociacaoGeraCandleComValoresIguais() {
-        LocalDateTime hoje = LocalDateTime.now();
-        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
-        var negociacoes = Arrays.asList(negociacao1);
-        var fabrica = new CandlestickFactory();
-        var candle = fabrica.constroiCandleParaData(hoje, negociacoes);
-        assertAll("Verificando candle com valores iguais",
-                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getMinimo()),
-                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getMaximo()),
-                () -> assertEquals(BigDecimal.valueOf(4050.0), candle.getVolume())
-        );
-    }
-
-    @Test
-    void precoMaximoNaoPodeSerMenorQueMinimo() {
-        Throwable throwable = assertThrows(IllegalArgumentException.class,
-                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
-                        BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
-        assertEquals("Valor máximo não poder ser menor que o valor mínimo", throwable.getMessage());
     }
 }

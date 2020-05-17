@@ -24,7 +24,7 @@ class NegociacaoTest {
         LocalDateTime data = LocalDateTime.of(2020, 5, 15, 0, 0, 0);
         Negociacao n = new Negociacao(BigDecimal.valueOf(10), 5, data);
         // ainda que eu tente mudar a data para 20...
-        n.getData().plusDays(2);
+        LocalDateTime dateTime = n.getData().plusDays(2);
         // ele continua no dia 15.
         assertEquals(15, n.getData().getDayOfMonth());
     }
@@ -36,7 +36,5 @@ class NegociacaoTest {
         Throwable error = assertThrows(IllegalArgumentException.class, () ->
                 new Negociacao(BigDecimal.valueOf(10), 5, null));
         assertEquals("data não pode ser nula", error.getMessage());
-
-        ;
     }
 }
