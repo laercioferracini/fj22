@@ -47,7 +47,12 @@ public class CandleBuilder {
     }
 
     public Candlestick geraCandle() {
-        if (abertura == null) throw new IllegalStateException("abertura não pode ser nula");
+        boolean camposNulos = verificaCampos();
+        if (!camposNulos) throw new IllegalStateException("candle não pode ser gerado com dados nulos");
         return new Candlestick(abertura, fechamento, minimo, maximo, volume, data);
+    }
+
+    private boolean verificaCampos() {
+        return abertura != null && fechamento != null && minimo != null && maximo != null && volume != null && data != null;
     }
 }

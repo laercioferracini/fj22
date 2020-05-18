@@ -35,6 +35,6 @@ class NegociacaoTest {
         //Item 60: Favoreça o uso das exceções padrões!
         Throwable error = assertThrows(IllegalArgumentException.class, () ->
                 new Negociacao(BigDecimal.valueOf(10), 5, null));
-        assertEquals("data não pode ser nula", error.getMessage());
+        assertEquals("Data não pode ser nula", error.getMessage());
     }
 }

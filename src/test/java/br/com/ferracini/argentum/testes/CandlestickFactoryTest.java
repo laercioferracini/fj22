@@ -116,7 +116,7 @@ class CandlestickFactoryTest {
         Throwable throwable = assertThrows(IllegalArgumentException.class,
                 () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
                         BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
-        assertEquals("Valor máximo não poder ser menor que o valor mínim", throwable.getMessage());
+        assertEquals("Valor máximo não pode ser menor que o valor mínimo", throwable.getMessage());
     }
 
     @Test
@@ -171,8 +171,7 @@ class CandlestickFactoryTest {
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
 
         List<Negociacao> negociacaoList = Arrays.asList(negociacao4, negociacao3, negociacao2, negociacao1);
-        //EFFECTIVE JAVA
-        //ITEM 47: Conheça e use as bibliotecas
+
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
@@ -190,11 +189,88 @@ class CandlestickFactoryTest {
 
     @Test
     void quandoAberturaIgualFechamentoEhAlta() {
-        //TODO 2) Se você fez os opcionais do primeiro exercício do capítulo anterior (criação do projeto e dos modelos)
+        //Se você fez os opcionais do primeiro exercício do capítulo anterior (criação do projeto e dos modelos)
         //você tem os métodos isAlta e isBaixa na classe Candlestick. Contudo, temos um comportamento não
         //especificado nesses métodos: e quando o preço de abertura for igual ao de fechamento?
         //Perguntando para nosso cliente, ele nos informou que, nesse caso, o candle deve ser considerado de alta.
         //Crie o teste quandoAberturaIgualFechamentoEhAlta dentro de CandlestickTest, verifique se isso está
         //ocorrendo. Se o teste falhar, faça mudanças no seu código para que a barra volte a ficar verde!
+        LocalDateTime hoje = LocalDateTime.now();
+
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+
+        List<Negociacao> negociacaoList = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
+
+        double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
+
+        CandlestickFactory factory = new CandlestickFactory();
+        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+
+        assertAll("Verificando candlestick",
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(39.8), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(45.0), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume()),
+                () -> assertTrue(candle.isAlta(), "Verificando se candle é de alta")
+        );
+        System.out.println(candle.toString());
+    }
+
+    @Test
+    void quandoAberturaMaiorQueFechamentoEhAlta() {
+        LocalDateTime hoje = LocalDateTime.now();
+
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(42.5), 100, hoje);
+
+        List<Negociacao> negociacaoList = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
+
+        double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
+
+        CandlestickFactory factory = new CandlestickFactory();
+        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+
+        assertAll("Verificando candlestick",
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(42.5), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(39.8), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(45.0), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume()),
+                () -> assertTrue(candle.isAlta(), "Verificando se candle é de alta")
+        );
+        System.out.println(candle.toString());
+    }
+
+    @Test
+    void quandoAberturaMenorQueFechamentoEhBaixa() {
+        LocalDateTime hoje = LocalDateTime.now();
+
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(40.4), 100, hoje);
+
+        List<Negociacao> negociacaoList = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
+
+        double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
+
+        CandlestickFactory factory = new CandlestickFactory();
+        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+
+        assertAll("Verificando candlestick",
+                () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(40.4), candle.getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(39.8), candle.getMinimo()),
+                () -> assertEquals(BigDecimal.valueOf(45.0), candle.getMaximo()),
+                () -> assertEquals(BigDecimal.valueOf(volume), candle.getVolume()),
+                () -> assertTrue(candle.isBaixa(), "Verificando se candle é de baixa")
+        );
+        System.out.println(candle.toString());
     }
 }

@@ -20,7 +20,7 @@ public class Candlestick {
 
     public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, LocalDateTime data) {
         if (maximo.compareTo(minimo) < 0)
-            throw new IllegalArgumentException("Valor máximo não poder ser menor que o valor mínimo");
+            throw new IllegalArgumentException("Valor máximo não pode ser menor que o valor mínimo");
         if (data == null) throw new IllegalArgumentException("Data não pode ser nula");
 
         this.abertura = abertura;
@@ -56,7 +56,7 @@ public class Candlestick {
     }
 
     public boolean isAlta() {
-        return this.abertura.compareTo(this.fechamento) < 0;
+        return this.abertura.compareTo(this.fechamento) <= 0;
     }
 
     public boolean isBaixa() {

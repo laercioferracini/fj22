@@ -48,12 +48,25 @@ class CandleBuilderTest {
         //deveria lançar outra exception conhecida da biblioteca Java, a IllegalStateException, quando invocado
         //antes dos seus outros seis métodos já terem sido.
         //O teste deve falhar. Corrija-o criando booleans que indicam se cada método setter foi invocado, ou utilizando alguma outra forma de verificação
-
-        Throwable t = assertThrows(RuntimeException.class, () -> new CandleBuilder()
+        Throwable t = assertThrows(IllegalStateException.class, () -> new CandleBuilder()
+                .comAbertura(BigDecimal.valueOf(100))
+                .comFechamento(BigDecimal.valueOf(100))
+                .comMinimo(BigDecimal.valueOf(90))
+                .comMaximo(BigDecimal.valueOf(101))
+                .comVolume(BigDecimal.valueOf(10100))
+                .comData(null)
                 .geraCandle());
 
+        assertEquals("candle não pode ser gerado com dados nulos", t.getMessage(), "Campo abertura");
 
-        assertEquals("abertura não pode ser nul", t.getMessage(), "abertura não pode ser nula");
+    }
+
+    @Test
+    void geraBuildDeveLancarExceptionQuandoChamadoSemIniciarParametros() {
+        Throwable t = assertThrows(IllegalStateException.class, () -> new CandleBuilder()
+                .geraCandle());
+
+        assertEquals("candle não pode ser gerado com dados nulos", t.getMessage(), "Geração de candle");
 
     }
 }
