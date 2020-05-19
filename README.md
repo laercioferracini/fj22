@@ -20,7 +20,7 @@ Repositório para aplicar os estudos da apostila fj22
 * Imutabilidade de objetos
 * Resumo diário das Negociações
   
-
+---
 ### Classe imutável  
 * Nenhum método pode modificar seu estado  
 * A classe deve ser ```final```;  
@@ -29,7 +29,14 @@ Repositório para aplicar os estudos da apostila fj22
 
 Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.  
 
+---
+### Desing patterns  
+* Considere utilizar **Factory** com métodos estáticos em vez de construtores
+* padrão de projeto **fluent interface** pode tornar o código mais conciso, sem perder a legibilidade  
+* Construir um objeto complicado, ou confuso, costumamos usar o padrão **Builder** para resolver isso  
+* A classe XStream (Parser XML) atua como **façade** de acesso para os principais recursos da biblioteca  
 
+---
 ### **Effective Java**
 * Item 1: Considere utilizar Factory com métodos estáticos em vez de construtores
 * Item 2: Considere usar um builder se o construtor tiver muitos parâmetros
