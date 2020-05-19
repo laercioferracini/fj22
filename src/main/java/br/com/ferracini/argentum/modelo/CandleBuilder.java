@@ -1,7 +1,7 @@
 package br.com.ferracini.argentum.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  * @author lferracini
@@ -14,7 +14,7 @@ public class CandleBuilder {
     private BigDecimal minimo;
     private BigDecimal maximo;
     private BigDecimal volume;
-    private LocalDateTime data;
+    private Calendar data;
 
     public CandleBuilder comAbertura(BigDecimal abertura) {
         this.abertura = abertura;
@@ -41,7 +41,7 @@ public class CandleBuilder {
         return this;
     }
 
-    public CandleBuilder comData(LocalDateTime data) {
+    public CandleBuilder comData(Calendar data) {
         this.data = data;
         return this;
     }

@@ -5,7 +5,7 @@ import br.com.ferracini.argentum.modelo.Candlestick;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +18,7 @@ class CandleBuilderTest {
 
     @Test
     void controiCandleComBuilder() {
-        LocalDateTime data = LocalDateTime.now().minusDays(20);
+        Calendar data = Calendar.getInstance();
         Candlestick candle = new CandleBuilder()
                 .comAbertura(BigDecimal.valueOf(40.5))
                 .comFechamento(BigDecimal.valueOf(42.3))

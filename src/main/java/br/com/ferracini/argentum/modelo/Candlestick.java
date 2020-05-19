@@ -1,8 +1,8 @@
 package br.com.ferracini.argentum.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * @author lferracini
@@ -16,9 +16,9 @@ public class Candlestick {
     private final BigDecimal minimo;
     private final BigDecimal maximo;
     private final BigDecimal volume;
-    private final LocalDateTime data;
+    private final Calendar data;
 
-    public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, LocalDateTime data) {
+    public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, Calendar data) {
         if (maximo.compareTo(minimo) < 0)
             throw new IllegalArgumentException("Valor máximo não pode ser menor que o valor mínimo");
         if (data == null) throw new IllegalArgumentException("Data não pode ser nula");
@@ -51,7 +51,7 @@ public class Candlestick {
         return volume;
     }
 
-    public LocalDateTime getData() {
+    public Calendar getData() {
         return data;
     }
 
@@ -71,7 +71,8 @@ public class Candlestick {
                 ", Minimo: " + minimo +
                 ", Maximo: " + maximo +
                 ", Volume: " + volume +
-                ", Data: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+//                ", Data: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", Data: " + new SimpleDateFormat("dd/MM/yyyy").format(data.getTime()) +
                 ']';
     }
 }

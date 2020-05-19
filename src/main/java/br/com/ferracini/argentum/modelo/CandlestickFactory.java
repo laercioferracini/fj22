@@ -1,7 +1,7 @@
 package br.com.ferracini.argentum.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -10,13 +10,13 @@ import java.util.List;
  * @since <pre>13/05/2020</pre>
  */
 public class CandlestickFactory {
-    public Candlestick constroiCandleParaData(LocalDateTime data, List<Negociacao> negociacoes) {
+    public Candlestick constroiCandleParaData(Calendar data, List<Negociacao> negociacoes) {
         BigDecimal maximo;
         BigDecimal minimo;
         BigDecimal volume;
-            maximo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
-            minimo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
-            volume = BigDecimal.ZERO;
+        maximo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
+        minimo = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
+        volume = BigDecimal.ZERO;
 
         for (Negociacao negociacao : negociacoes) {
             volume = volume.add(negociacao.getVolume());

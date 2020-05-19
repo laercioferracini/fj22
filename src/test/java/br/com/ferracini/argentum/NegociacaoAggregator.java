@@ -7,7 +7,7 @@ import org.junit.jupiter.params.aggregator.ArgumentsAggregationException;
 import org.junit.jupiter.params.aggregator.ArgumentsAggregator;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  * @author lferracini
@@ -21,6 +21,6 @@ public class NegociacaoAggregator implements ArgumentsAggregator {
         return new Negociacao(
                 accessor.get(0, BigDecimal.class),
                 accessor.get(1, Integer.class),
-                accessor.get(2, LocalDateTime.class));
+                accessor.get(2, Calendar.class));
     }
 }

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +26,7 @@ class CandlestickFactoryTest {
     @Test
     @DisplayName(value = "construir candle para a data corretamente")
     void constroiCandleParaDataCorretamente() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
@@ -55,7 +55,7 @@ class CandlestickFactoryTest {
     @Test
     @DisplayName(value = "construir candle com uma negociacao corretamente")
     void constroiCandleComUmaNegociacaoCorretamente() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
 
@@ -79,7 +79,7 @@ class CandlestickFactoryTest {
 
     @Test
     void semNegociacoesGeraCandleComZerosCorretamente() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         List<Negociacao> negociacaoList = Collections.emptyList();
 
@@ -97,7 +97,7 @@ class CandlestickFactoryTest {
 
     @Test
     public void apenasUmaNegociacaoGeraCandleComValoresIguais() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         var negociacoes = Collections.singletonList(negociacao1);
         var fabrica = new CandlestickFactory();
@@ -115,7 +115,7 @@ class CandlestickFactoryTest {
     void precoMaximoNaoPodeSerMenorQueMinimo() {
         Throwable throwable = assertThrows(IllegalArgumentException.class,
                 () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
-                        BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), LocalDateTime.now()));
+                        BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), Calendar.getInstance()));
         assertEquals("Valor máximo não pode ser menor que o valor mínimo", throwable.getMessage());
     }
 
@@ -133,7 +133,7 @@ class CandlestickFactoryTest {
     void negociacoesEmOrdemCrescenteDeValorCorretamente() {
         //6) (opcional) Crie mais dois testes na CandlestickFactoryTest: o negociacoesEmOrdemCrescenteDeValor
         //e negociacoesEmOrdemDecrescenteDeValor, que devem fazer o que o próprio nome diz
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(42.3), 100, hoje);
@@ -163,7 +163,7 @@ class CandlestickFactoryTest {
     void negociacoesEmOrdemDecrescenteDeValorCorretamente() {
         //6) (opcional) Crie mais dois testes na CandlestickFactoryTest: o negociacoesEmOrdemCrescenteDeValor
         //e negociacoesEmOrdemDecrescenteDeValor, que devem fazer o que o próprio nome diz
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(49.8), 100, hoje);
         Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(45.5), 100, hoje);
@@ -195,7 +195,7 @@ class CandlestickFactoryTest {
         //Perguntando para nosso cliente, ele nos informou que, nesse caso, o candle deve ser considerado de alta.
         //Crie o teste quandoAberturaIgualFechamentoEhAlta dentro de CandlestickTest, verifique se isso está
         //ocorrendo. Se o teste falhar, faça mudanças no seu código para que a barra volte a ficar verde!
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
@@ -222,7 +222,7 @@ class CandlestickFactoryTest {
 
     @Test
     void quandoAberturaMaiorQueFechamentoEhAlta() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
@@ -249,7 +249,7 @@ class CandlestickFactoryTest {
 
     @Test
     void quandoAberturaMenorQueFechamentoEhBaixa() {
-        LocalDateTime hoje = LocalDateTime.now();
+        Calendar hoje = Calendar.getInstance();
 
         Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
         Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);

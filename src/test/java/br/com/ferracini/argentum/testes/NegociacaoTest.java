@@ -4,7 +4,7 @@ import br.com.ferracini.argentum.modelo.Negociacao;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,12 +21,13 @@ class NegociacaoTest {
         //Effective Java
         //Item 39: Faça cópias defensivas quando necessário.
         // se criar um negocio no dia 15...
-        LocalDateTime data = LocalDateTime.of(2020, 5, 15, 0, 0, 0);
+        Calendar data = Calendar.getInstance(); //.of(2020, 5, 15, 0, 0, 0);
+        data.set(Calendar.DAY_OF_MONTH, 15);
         Negociacao n = new Negociacao(BigDecimal.valueOf(10), 5, data);
         // ainda que eu tente mudar a data para 20...
-        LocalDateTime dateTime = n.getData().plusDays(2);
+        n.getData().set(Calendar.DAY_OF_MONTH, 20);
         // ele continua no dia 15.
-        assertEquals(15, n.getData().getDayOfMonth());
+        assertEquals(15, n.getData().get(Calendar.DAY_OF_MONTH));
     }
 
     @Test()
