@@ -1,4 +1,4 @@
-package br.com.ferracini.argentum.testes;
+package br.com.ferracini.argentum.modelo.testes;
 
 import br.com.ferracini.argentum.modelo.CandleBuilder;
 import br.com.ferracini.argentum.modelo.Candlestick;

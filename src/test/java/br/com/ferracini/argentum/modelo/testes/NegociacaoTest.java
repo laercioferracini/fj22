@@ -1,4 +1,4 @@
-package br.com.ferracini.argentum.testes;
+package br.com.ferracini.argentum.modelo.testes;
 
 import br.com.ferracini.argentum.modelo.Negociacao;
 import org.junit.jupiter.api.Test;

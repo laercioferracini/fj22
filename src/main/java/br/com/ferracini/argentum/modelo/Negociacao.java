@@ -17,7 +17,9 @@ public final class Negociacao {
     private final int quantidade;
     private final Calendar data;
 
-    public Negociacao(BigDecimal preco, int quantidade, Calendar data) {
+    public Negociacao(BigDecimal preco, Integer quantidade, Calendar data) {
+        if (preco == null || quantidade == null)
+            throw new IllegalArgumentException("Campo preço/quantidade não pode ser nula");
         if (data == null) throw new IllegalArgumentException("Data não pode ser nula");
         this.preco = preco;
         this.quantidade = quantidade;
