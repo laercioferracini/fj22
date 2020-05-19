@@ -39,18 +39,18 @@ Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.
 ---
 #### Quotes
 *“Na maioria dos casos, as pessoas, inclusive os facínoras, são muito mais ingênuas e simples do que
- costumamos achar. Aliás, nós também.”*
- 
+ costumamos achar. Aliás, nós também.”*  
 – **Fiodór Dostoiévski**, em Irmãos Karamazov
 
 *“Primeiro aprenda ciência da computação e toda a teoria. Depois desenvolva um estilo de programação. E aí
-esqueça tudo e apenas ‘hackeie’.*
-
+esqueça tudo e apenas ‘hackeie’.*  
 – **George Carrette**
 
-*"Apenas duas coisas são infinitas: o universo e a estupidez humana. E eu não tenho certeza do primeiro."*
-
+*"Apenas duas coisas são infinitas: o universo e a estupidez humana. E eu não tenho certeza do primeiro."*  
 – **Albert Einstein**
  
-*Simplicity is the ultimate sophistication.*
+*Simplicity is the ultimate sophistication.*  
 –  **Leonardo da Vinci**
+
+*"Se eu enxerguei longe, foi por ter subido nos ombros de gigantes."*  
+– **Isaac Newton**
