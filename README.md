@@ -1,3 +1,5 @@
+![Java CI with Gradle](https://github.com/laercioferracini/fj22/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=master)
+
 # FJ22 estudos 
 
 **Laboratório Java com testes, JSF e Design patterns**
