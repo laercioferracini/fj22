@@ -1,6 +1,7 @@
 package br.com.ferracini.argentum.modelo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,5 +32,29 @@ public class CandlestickFactory {
                 negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(negociacoes.size() - 1).getPreco();
 
         return new Candlestick(abertura, fechamento, minimo, maximo, volume, data);
+    }
+
+    public List<Candlestick> constroiCandles(List<Negociacao> todasNegociacoes) {
+        List<Candlestick> candles = new ArrayList<>();
+
+        List<Negociacao> negociacoesDoDia = new ArrayList<>();
+        Calendar dataAtual = todasNegociacoes.get(0).getData();
+
+        for (Negociacao negociacao : todasNegociacoes) {
+
+            if (!negociacao.isMesmoDia(dataAtual)) {
+                Candlestick candleDoDia = constroiCandleParaData(dataAtual, negociacoesDoDia);
+                candles.add(candleDoDia);
+                negociacoesDoDia = new ArrayList<>();
+                dataAtual = negociacao.getData();
+            }
+            negociacoesDoDia.add(negociacao);
+        }
+
+        //adiciona último candle
+        Candlestick candleDoDia = constroiCandleParaData(dataAtual, negociacoesDoDia);
+        candles.add(candleDoDia);
+
+        return candles;
     }
 }
