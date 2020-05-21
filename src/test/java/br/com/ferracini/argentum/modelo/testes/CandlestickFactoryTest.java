@@ -313,4 +313,34 @@ class CandlestickFactoryTest {
         );
 
     }
+
+    @Test
+    void naoPermiteConstruirCandlesComNegociacoesForaDeOrdem() {
+        Calendar hoje = Calendar.getInstance();
+
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(42.3), 100, hoje);
+
+        Calendar amanha = (Calendar) hoje.clone();
+        amanha.add(Calendar.DAY_OF_MONTH, 1);
+
+        Negociacao negociacao5 = new Negociacao(BigDecimal.valueOf(48.8), 100, amanha);
+        Negociacao negociacao6 = new Negociacao(BigDecimal.valueOf(49.3), 100, amanha);
+
+        Calendar depoisDeAmanha = (Calendar) amanha.clone();
+        depoisDeAmanha.add(Calendar.DAY_OF_MONTH, 1);
+
+        Negociacao negociacao7 = new Negociacao(BigDecimal.valueOf(51.8), 100, depoisDeAmanha);
+        Negociacao negociacao8 = new Negociacao(BigDecimal.valueOf(52.3), 100, depoisDeAmanha);
+
+        List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2,
+                negociacao3, negociacao4, negociacao7, negociacao8, negociacao6, negociacao5);
+
+        CandlestickFactory factory = new CandlestickFactory();
+
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> factory.constroiCandles(negociacoes));
+        assertEquals("negociações em ordem errada", e.getMessage());
+    }
 }
