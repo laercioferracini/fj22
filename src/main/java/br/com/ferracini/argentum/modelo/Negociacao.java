@@ -42,4 +42,8 @@ public final class Negociacao {
     public BigDecimal getVolume() {
         return preco.multiply(BigDecimal.valueOf(quantidade));
     }
+
+    public boolean isMesmoDia(Calendar mesmoDia) {
+        return this.data.equals(mesmoDia);
+    }
 }

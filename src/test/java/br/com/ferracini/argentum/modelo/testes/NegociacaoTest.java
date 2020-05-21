@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author lferracini
@@ -37,5 +37,24 @@ class NegociacaoTest {
         Throwable error = assertThrows(IllegalArgumentException.class, () ->
                 new Negociacao(BigDecimal.valueOf(10), 5, null));
         assertEquals("Data não pode ser nula", error.getMessage());
+    }
+
+    @Test
+    void mesmoMilisegundoEhDoMesmoDia() {
+        Calendar agora = Calendar.getInstance();
+        Calendar mesmoDia = (Calendar) agora.clone();
+
+        Negociacao negociacao = new Negociacao(BigDecimal.valueOf(23.1), 100, agora);
+        assertTrue(negociacao.isMesmoDia(mesmoDia));
+
+    }
+
+    @Test
+    void comHorariosDiferentesEhNoMesmoDia() {
+        Calendar manha = new GregorianCalendar(2020, Calendar.MAY, 21, 8, 30);
+        Calendar tarde = new GregorianCalendar(2020, Calendar.MAY, 21, 13, 30);
+
+        Negociacao negociacao = new Negociacao(BigDecimal.valueOf(23.1), 100, manha);
+        assertTrue(negociacao.isMesmoDia(tarde));
     }
 }
