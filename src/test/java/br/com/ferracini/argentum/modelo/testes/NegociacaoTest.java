@@ -57,4 +57,22 @@ class NegociacaoTest {
         Negociacao negociacao = new Negociacao(BigDecimal.valueOf(23.1), 100, manha);
         assertTrue(negociacao.isMesmoDia(tarde));
     }
+
+    @Test
+    void mesmoDiaMasMesesDiferentesNaoSaoDoMesmoDia() {
+        Calendar umDia = new GregorianCalendar(2020, Calendar.MAY, 21, 8, 30);
+        Calendar outroDia = new GregorianCalendar(2020, Calendar.APRIL, 21, 13, 30);
+
+        Negociacao negociacao = new Negociacao(BigDecimal.valueOf(23.1), 100, umDia);
+        assertFalse(negociacao.isMesmoDia(outroDia));
+    }
+
+    @Test
+    void mesmoDiaEMesMasAnosDiferentesNaoSaoDoMesmoDia() {
+        Calendar umDia = new GregorianCalendar(2020, Calendar.MAY, 21, 8, 30);
+        Calendar outroDiaOutroAno = new GregorianCalendar(2019, Calendar.MAY, 21, 13, 30);
+
+        Negociacao negociacao = new Negociacao(BigDecimal.valueOf(23.1), 100, umDia);
+        assertFalse(negociacao.isMesmoDia(outroDiaOutroAno));
+    }
 }
