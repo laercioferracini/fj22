@@ -3,6 +3,7 @@ package br.com.ferracini.argentum.modelo.testes;
 import br.com.ferracini.argentum.modelo.Candlestick;
 import br.com.ferracini.argentum.modelo.CandlestickFactory;
 import br.com.ferracini.argentum.modelo.Negociacao;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -315,6 +316,7 @@ class CandlestickFactoryTest {
     }
 
     @Test
+    @Disabled
     void naoPermiteConstruirCandlesComNegociacoesForaDeOrdem() {
         Calendar hoje = Calendar.getInstance();
 
@@ -342,5 +344,42 @@ class CandlestickFactoryTest {
 
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> factory.constroiCandles(negociacoes));
         assertEquals("negociações em ordem errada", e.getMessage());
+    }
+
+    @Test
+    void permiteConstruirCandlesComNegociacoesForaDeOrdem() {
+        Calendar hoje = Calendar.getInstance();
+
+        Negociacao negociacao1 = new Negociacao(BigDecimal.valueOf(40.5), 100, hoje);
+        Negociacao negociacao2 = new Negociacao(BigDecimal.valueOf(45.0), 100, hoje);
+        Negociacao negociacao3 = new Negociacao(BigDecimal.valueOf(39.8), 100, hoje);
+        Negociacao negociacao4 = new Negociacao(BigDecimal.valueOf(42.3), 100, hoje);
+
+        Calendar amanha = (Calendar) hoje.clone();
+        amanha.add(Calendar.DAY_OF_MONTH, 1);
+
+        Negociacao negociacao5 = new Negociacao(BigDecimal.valueOf(48.8), 100, amanha);
+        Negociacao negociacao6 = new Negociacao(BigDecimal.valueOf(49.3), 100, amanha);
+
+        Calendar depoisDeAmanha = (Calendar) amanha.clone();
+        depoisDeAmanha.add(Calendar.DAY_OF_MONTH, 1);
+
+        Negociacao negociacao7 = new Negociacao(BigDecimal.valueOf(51.8), 100, depoisDeAmanha);
+        Negociacao negociacao8 = new Negociacao(BigDecimal.valueOf(52.3), 100, depoisDeAmanha);
+
+        List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2,
+                negociacao3, negociacao4, negociacao7, negociacao8, negociacao5, negociacao6);
+
+        List<Candlestick> candlesticks = new CandlestickFactory().constroiCandles(negociacoes);
+
+        assertAll("Verificando lista de candles",
+                () -> assertEquals(3, candlesticks.size()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candlesticks.get(0).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(42.3), candlesticks.get(0).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(48.8), candlesticks.get(1).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(49.3), candlesticks.get(1).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(51.8), candlesticks.get(2).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(52.3), candlesticks.get(2).getFechamento())
+        );
     }
 }

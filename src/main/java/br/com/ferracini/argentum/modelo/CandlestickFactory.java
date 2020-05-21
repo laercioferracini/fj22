@@ -3,7 +3,9 @@ package br.com.ferracini.argentum.modelo;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author lferracini
@@ -35,6 +37,10 @@ public class CandlestickFactory {
     }
 
     public List<Candlestick> constroiCandles(List<Negociacao> todasNegociacoes) {
+
+        todasNegociacoes = todasNegociacoes.stream().sorted(Comparator.comparing(Negociacao::getData))
+                .collect(Collectors.toList());
+
         List<Candlestick> candles = new ArrayList<>();
 
         List<Negociacao> negociacoesDoDia = new ArrayList<>();
