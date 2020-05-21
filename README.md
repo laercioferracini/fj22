@@ -67,3 +67,5 @@ esqueça tudo e apenas ‘hackeie’”.*
 *“Experiência sem teoria é cegueira, mas teoria sem experiência é mero jogo intelectual.”*  
 – **Immanuel Kant**
 
+*“Nenhum homem é uma ilha isolada; cada homem é uma partícula do continente, uma parte da terra”*  
+ – **John Donne**
