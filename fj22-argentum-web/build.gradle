@@ -1,0 +1,63 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+    // Apply the application plugin to add support for building a CLI application.
+    id 'war'
+}
+
+group 'br.com.ferracini.argentum'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
+
+dependencies {
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:28.2-jre'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.12'
+
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    // https://mvnrepository.com/artifact/com.sun.faces/jsf-api
+    compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.14'
+    // https://mvnrepository.com/artifact/com.sun.faces/jsf-impl
+    compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.14'
+    // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api
+    compile group: 'javax.servlet.jsp.jstl', name: 'javax.servlet.jsp.jstl-api', version: '1.2.1'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
+}
+
+//application {
+//    // Define the main class for the application.
+//    mainClassName = 'br.com.ferracini.argentum.modelo.App'
+//}
+
+test {
+    // Use junit platform for unit tests
+    useJUnitPlatform()
+}
+
+task deploy(type: Copy) {
+    dependsOn(build)
+    println('Executando deploy')
+
+    println('Copiando arquivos')
+
+    from "$buildDir/libs"
+    include "*.war"
+
+    into "F:\\apache-tomcat-9.0.35\\webapps\\"
+
+}
