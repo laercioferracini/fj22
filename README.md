@@ -69,3 +69,7 @@ esqueça tudo e apenas ‘hackeie’”.*
 
 *“Nenhum homem é uma ilha isolada; cada homem é uma partícula do continente, uma parte da terra”*  
  – **John Donne**
+
+*“Eu não temo computadores, eu temo é a falta deles”*  
+ – **Isaac Asimov**
+ 
