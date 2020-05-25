@@ -2,11 +2,27 @@ allprojects {
     apply plugin: 'java'
     compileJava.options.encoding = "UTF-8"
     compileTestJava.options.encoding = "UTF-8"
+    task hello {
+        doLast { task ->
+            println "I'm $task.project.name"
+        }
+    }
 }
 subprojects {
     version = '0.0.1-SNAPSHOT'
+
+    hello {
+        doLast {
+            println "- I depend on fj22"
+        }
+    }
+
 }
 
-project(':fj22'){}
+project(':fj22-backend') {}
 
-project(':fj22-argentum-web'){}
+project(':fj22-argentum-web') {
+    dependencies {
+        implementation project(':fj22-backend')
+    }
+}

@@ -61,3 +61,8 @@ task deploy(type: Copy) {
     into "F:\\apache-tomcat-9.0.35\\webapps\\"
 
 }
+
+hello.doLast {
+    println "- I'm the largest animal that has ever lived on this planet."
+}
+
