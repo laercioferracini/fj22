@@ -20,12 +20,8 @@ import java.util.Random;
  */
 public class GeradorAletatorioDeXML {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        GeradorAletatorioDeXML g = new GeradorAletatorioDeXML();
-        g.gerarArquivoXML();
-    }
 
-    void gerarArquivoXML() throws FileNotFoundException {
+    public void gerarArquivoXML() throws FileNotFoundException {
         Calendar data = Calendar.getInstance();
         Random random = new Random(123);
         List<Negociacao> negociacoes = new ArrayList<>();

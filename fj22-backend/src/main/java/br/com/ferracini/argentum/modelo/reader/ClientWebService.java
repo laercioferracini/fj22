@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  * @author lferracini
@@ -20,6 +21,7 @@ public class ClientWebService {
             "http://argentumws.caelum.com.br/negociacoes";
 
     public List<Negociacao> getNegociacoes() {
+        Logger.getGlobal().info("getNegociações");
         HttpURLConnection connection = null;
         InputStream inputStream;
         try {
