@@ -49,4 +49,13 @@ public final class Negociacao {
                         this.data.get(Calendar.MONTH) == outraData.get(Calendar.MONTH) &&
                         this.data.get(Calendar.YEAR) == outraData.get(Calendar.YEAR);
     }
+
+    @Override
+    public String toString() {
+        return "Negociacao{" +
+                "preco=" + preco +
+                ", quantidade=" + quantidade +
+                ", data=" + data +
+                '}';
+    }
 }

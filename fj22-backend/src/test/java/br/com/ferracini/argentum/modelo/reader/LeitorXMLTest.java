@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.converters.ConversionException;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.List;

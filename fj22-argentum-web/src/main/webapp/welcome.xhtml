@@ -19,11 +19,24 @@
         <h:commandButton action="#{olaMundoBean.nomeFoiDigitado}" value="OK"/>
     </h:form>
 
-    <p:dataTable var="negociacao" value="#{argentumBean.negociacoes}">
-    <p:column headerText="Preço">
-        <h:outputText value="#{negociacao.preco}"/>
-    </p:column>
+    <br/>
+    <br/>
 
-</p:dataTable>
+    <p:dataTable var="negociacao" value="#{argentumBean.negociacoes}">
+        <p:column headerText="Preço">
+            <h:outputText value="#{negociacao.preco}"/>
+        </p:column>
+        <p:column headerText="Quantidade">
+            <h:outputText value="#{negociacao.quantidade}"/>
+        </p:column>
+        <p:column headerText="Volume">
+            <h:outputText value="#{negociacao.volume}"/>
+        </p:column>
+        <p:column headerText="Data">
+            <h:outputText value="#{negociacao.data.time}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
 </h:body>
 </html>

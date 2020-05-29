@@ -18,12 +18,11 @@ import java.util.List;
 public class LeitorXML {
 
     @SuppressWarnings("unchecked")
-    public List<Negociacao> carrega(InputStream inputStream) throws FileNotFoundException {
+    public List<Negociacao> carrega(InputStream inputStream) {
         XStream stream = new XStream(new DomDriver());
         stream.alias("negociacao", Negociacao.class);
         Object o = stream.fromXML(inputStream);
-        GeradorAletatorioDeXML g = new GeradorAletatorioDeXML();
-        g.gerarArquivoXML();
+
         return o != null ? (List<Negociacao>) o : Collections.emptyList();
     }
 }
