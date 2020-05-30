@@ -2,6 +2,7 @@ package br.com.ferracini.argentum.modelo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
@@ -11,7 +12,7 @@ import java.util.Calendar;
  * @since <pre>13/05/2020</pre>
  */
 @XStreamAlias("negociacao")
-public final class Negociacao {
+public final class Negociacao implements Serializable {
 
     private final BigDecimal preco;
     private final int quantidade;
