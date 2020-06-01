@@ -1,6 +1,6 @@
 package br.com.ferracini.argentum.indicadores;
 
-import br.com.ferracini.argentum.modelo.Candlestick;
+import br.com.ferracini.argentum.modelo.Candle;
 import br.com.ferracini.argentum.modelo.SerieTemporal;
 
 import java.math.BigDecimal;
@@ -22,10 +22,10 @@ public class GeradorDeSerie {
      * tais candles encapsuladas em uma Serie Temporal.
      **/
     public static SerieTemporal criaSerie(double... valores) {
-        List<Candlestick> candles = new ArrayList<>();
+        List<Candle> candles = new ArrayList<>();
         for (double d : valores) {
             BigDecimal dd = BigDecimal.valueOf(d);
-            candles.add(new Candlestick(dd, dd, dd, dd,
+            candles.add(new Candle(dd, dd, dd, dd,
                     BigDecimal.valueOf(1000), Calendar.getInstance()));
         }
         return new SerieTemporal(candles);

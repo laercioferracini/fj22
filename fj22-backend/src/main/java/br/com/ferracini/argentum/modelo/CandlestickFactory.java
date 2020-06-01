@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
  * @since <pre>13/05/2020</pre>
  */
 public class CandlestickFactory {
-    public Candlestick constroiCandleParaData(Calendar data, List<Negociacao> negociacoes) {
+
+    public Candle constroiCandleParaData(Calendar data, List<Negociacao> negociacoes) {
         BigDecimal maximo;
         BigDecimal minimo;
         BigDecimal volume;
@@ -23,25 +24,26 @@ public class CandlestickFactory {
 
         for (Negociacao negociacao : negociacoes) {
             volume = volume.add(negociacao.getVolume());
-            if (negociacao.getPreco().compareTo(maximo) > 0) {
-                maximo = negociacao.getPreco();
-            } else if (negociacao.getPreco().compareTo(minimo) < 0) {
-                minimo = negociacao.getPreco();
+            BigDecimal preco = negociacao.getPreco();
+            if (preco.compareTo(maximo) > 0) {
+                maximo = preco;
+            } else if (preco.compareTo(minimo) < 0) {
+                minimo = preco;
             }
         }
         BigDecimal abertura = negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(0).getPreco();
         BigDecimal fechamento =
                 negociacoes.isEmpty() ? BigDecimal.ZERO : negociacoes.get(negociacoes.size() - 1).getPreco();
 
-        return new Candlestick(abertura, fechamento, minimo, maximo, volume, data);
+        return new Candle(abertura, fechamento, minimo, maximo, volume, data);
     }
 
-    public List<Candlestick> constroiCandles(List<Negociacao> todasNegociacoes) {
+    public List<Candle> constroiCandles(List<Negociacao> todasNegociacoes) {
 
         todasNegociacoes = todasNegociacoes.stream().sorted(Comparator.comparing(Negociacao::getData))
                 .collect(Collectors.toList());
 
-        List<Candlestick> candles = new ArrayList<>();
+        List<Candle> candles = new ArrayList<>();
 
         List<Negociacao> negociacoesDoDia = new ArrayList<>();
         Calendar dataAtual = todasNegociacoes.get(0).getData();
@@ -49,8 +51,7 @@ public class CandlestickFactory {
         for (Negociacao negociacao : todasNegociacoes) {
             if (negociacao.getData().before(dataAtual)) throw new IllegalStateException("negociações em ordem errada");
             if (!negociacao.isMesmoDia(dataAtual)) {
-                Candlestick candleDoDia = constroiCandleParaData(dataAtual, negociacoesDoDia);
-                candles.add(candleDoDia);
+                criaEGuardaCandle(candles, negociacoesDoDia, dataAtual);
                 negociacoesDoDia = new ArrayList<>();
                 dataAtual = negociacao.getData();
             }
@@ -58,9 +59,15 @@ public class CandlestickFactory {
         }
 
         //adiciona último candle
-        Candlestick candleDoDia = constroiCandleParaData(dataAtual, negociacoesDoDia);
-        candles.add(candleDoDia);
+        criaEGuardaCandle(candles, negociacoesDoDia, dataAtual);
 
         return candles;
+    }
+
+    private void criaEGuardaCandle(List<Candle> candles, List<Negociacao> negociacoesDoDia, Calendar dataAtual) {
+        // quebrar essa refatoração
+        // em pedaços pequenos e rodar os testes a cada passo
+        Candle candleDoDia = constroiCandleParaData(dataAtual, negociacoesDoDia);
+        candles.add(candleDoDia);
     }
 }

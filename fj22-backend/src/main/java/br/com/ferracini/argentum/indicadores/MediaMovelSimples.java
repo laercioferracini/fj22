@@ -1,6 +1,5 @@
 package br.com.ferracini.argentum.indicadores;
 
-import br.com.ferracini.argentum.modelo.Candlestick;
 import br.com.ferracini.argentum.modelo.SerieTemporal;
 
 import java.math.BigDecimal;
@@ -17,8 +16,7 @@ public class MediaMovelSimples {
 
         BigDecimal soma = BigDecimal.ZERO;
         for (int i = posicao; i > posicao - 3; i--) {
-            Candlestick c = serie.getCandle(i);
-            soma = soma.add(c.getFechamento());
+            soma = soma.add(serie.getCandle(i).getFechamento());
         }
         return soma.divide(BigDecimal.valueOf(3), RoundingMode.HALF_DOWN);
     }

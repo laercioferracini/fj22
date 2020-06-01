@@ -1,7 +1,7 @@
 package br.com.ferracini.argentum.modelo.testes;
 
 import br.com.ferracini.argentum.modelo.CandleBuilder;
-import br.com.ferracini.argentum.modelo.Candlestick;
+import br.com.ferracini.argentum.modelo.Candle;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ class CandleBuilderTest {
     @Test
     void controiCandleComBuilder() {
         Calendar data = Calendar.getInstance();
-        Candlestick candle = new CandleBuilder()
+        Candle candle = new CandleBuilder()
                 .comAbertura(BigDecimal.valueOf(40.5))
                 .comFechamento(BigDecimal.valueOf(42.3))
                 .comMinimo(BigDecimal.valueOf(39.8))

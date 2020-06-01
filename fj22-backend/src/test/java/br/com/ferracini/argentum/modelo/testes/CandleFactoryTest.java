@@ -1,6 +1,6 @@
 package br.com.ferracini.argentum.modelo.testes;
 
-import br.com.ferracini.argentum.modelo.Candlestick;
+import br.com.ferracini.argentum.modelo.Candle;
 import br.com.ferracini.argentum.modelo.CandlestickFactory;
 import br.com.ferracini.argentum.modelo.Negociacao;
 import org.junit.jupiter.api.Disabled;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since <pre>13/05/2020</pre>
  */
 @DisplayName("Candlestick factory deveria")
-class CandlestickFactoryTest {
+class CandleFactoryTest {
 
     @Test
     @DisplayName(value = "construir candle para a data corretamente")
@@ -40,7 +40,7 @@ class CandlestickFactoryTest {
         double volume = 16760.0;// negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
@@ -65,7 +65,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.50), candle.getAbertura()),
@@ -85,7 +85,7 @@ class CandlestickFactoryTest {
         List<Negociacao> negociacaoList = Collections.emptyList();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.ZERO, candle.getAbertura(), "Verificando abertura"),
                 () -> assertEquals(BigDecimal.ZERO, candle.getFechamento(), "Verificando fechamento"),
@@ -115,7 +115,7 @@ class CandlestickFactoryTest {
     @Test
     void precoMaximoNaoPodeSerMenorQueMinimo() {
         Throwable throwable = assertThrows(IllegalArgumentException.class,
-                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
+                () -> new Candle(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
                         BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(10000), Calendar.getInstance()));
         assertEquals("Valor máximo não pode ser menor que o valor mínimo", throwable.getMessage());
     }
@@ -124,7 +124,7 @@ class CandlestickFactoryTest {
     void precoNaoPodeSerNulo() {
         //5) (opcional) Um Candlestick pode ter data nula? Pode ter algum valor negativo?
         Throwable throwable = assertThrows(IllegalArgumentException.class,
-                () -> new Candlestick(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
+                () -> new Candle(BigDecimal.valueOf(10), BigDecimal.valueOf(20),
                         BigDecimal.valueOf(20), BigDecimal.valueOf(30), BigDecimal.valueOf(10000), null));
         assertEquals("Data não pode ser nula", throwable.getMessage(), "Campo data");
     }
@@ -147,7 +147,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.50), candle.getAbertura(), "Verificando abertura"),
@@ -176,7 +176,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(49.80), candle.getAbertura()),
@@ -208,7 +208,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
@@ -235,7 +235,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
@@ -262,7 +262,7 @@ class CandlestickFactoryTest {
         double volume = negociacaoList.stream().mapToDouble(e -> Double.parseDouble(e.getPreco().multiply(BigDecimal.valueOf(e.getQuantidade())).toPlainString())).sum();
 
         CandlestickFactory factory = new CandlestickFactory();
-        Candlestick candle = factory.constroiCandleParaData(hoje, negociacaoList);
+        Candle candle = factory.constroiCandleParaData(hoje, negociacaoList);
 
         assertAll("Verificando candlestick",
                 () -> assertEquals(BigDecimal.valueOf(40.5), candle.getAbertura()),
@@ -301,16 +301,16 @@ class CandlestickFactoryTest {
 
         CandlestickFactory factory = new CandlestickFactory();
 
-        List<Candlestick> candlesticks = factory.constroiCandles(negociacoes);
+        List<Candle> candles = factory.constroiCandles(negociacoes);
 
         assertAll("Verificando lista de candles",
-                () -> assertEquals(3, candlesticks.size()),
-                () -> assertEquals(BigDecimal.valueOf(40.5), candlesticks.get(0).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(42.3), candlesticks.get(0).getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(48.8), candlesticks.get(1).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(49.3), candlesticks.get(1).getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(51.8), candlesticks.get(2).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(52.3), candlesticks.get(2).getFechamento())
+                () -> assertEquals(3, candles.size()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candles.get(0).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(42.3), candles.get(0).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(48.8), candles.get(1).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(49.3), candles.get(1).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(51.8), candles.get(2).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(52.3), candles.get(2).getFechamento())
         );
 
     }
@@ -370,16 +370,16 @@ class CandlestickFactoryTest {
         List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2,
                 negociacao3, negociacao4, negociacao7, negociacao8, negociacao5, negociacao6);
 
-        List<Candlestick> candlesticks = new CandlestickFactory().constroiCandles(negociacoes);
+        List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
 
         assertAll("Verificando lista de candles",
-                () -> assertEquals(3, candlesticks.size()),
-                () -> assertEquals(BigDecimal.valueOf(40.5), candlesticks.get(0).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(42.3), candlesticks.get(0).getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(48.8), candlesticks.get(1).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(49.3), candlesticks.get(1).getFechamento()),
-                () -> assertEquals(BigDecimal.valueOf(51.8), candlesticks.get(2).getAbertura()),
-                () -> assertEquals(BigDecimal.valueOf(52.3), candlesticks.get(2).getFechamento())
+                () -> assertEquals(3, candles.size()),
+                () -> assertEquals(BigDecimal.valueOf(40.5), candles.get(0).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(42.3), candles.get(0).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(48.8), candles.get(1).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(49.3), candles.get(1).getFechamento()),
+                () -> assertEquals(BigDecimal.valueOf(51.8), candles.get(2).getAbertura()),
+                () -> assertEquals(BigDecimal.valueOf(52.3), candles.get(2).getFechamento())
         );
     }
 }

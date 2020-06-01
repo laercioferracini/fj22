@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @project = fj22
  * @since <pre>13/05/2020</pre>
  */
-public class Candlestick {
+public class Candle {
 
     private final BigDecimal abertura;
     private final BigDecimal fechamento;
@@ -18,7 +18,7 @@ public class Candlestick {
     private final BigDecimal volume;
     private final Calendar data;
 
-    public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, Calendar data) {
+    public Candle(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo, BigDecimal volume, Calendar data) {
         if (maximo.compareTo(minimo) < 0)
             throw new IllegalArgumentException("Valor máximo não pode ser menor que o valor mínimo");
         if (data == null) throw new IllegalArgumentException("Data não pode ser nula");
