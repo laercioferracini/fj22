@@ -75,3 +75,6 @@ esqueça tudo e apenas ‘hackeie’”.*
  
 *“Nunca confie em um computador que você não pode jogar pela janela.”*  
 – **Steve Wozniak**
+
+*“A única pessoa educada é aquela que aprendeu a aprender e a mudar.”*  
+– **Carl Rogers**
