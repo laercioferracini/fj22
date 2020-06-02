@@ -44,7 +44,7 @@ Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.
 * Item 15: Minimize mutabilidade
 * Item 47: Conheça e use as bibliotecas
 * Item 39: Faça cópias defensivas quando necessário.
-
+* Item 34: refira-se a objetos pela sua interface
 ---
 #### Quotes
 *“Na maioria dos casos, as pessoas, inclusive os facínoras, são muito mais ingênuas e simples do que
