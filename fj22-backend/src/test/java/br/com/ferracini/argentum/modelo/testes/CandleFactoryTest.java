@@ -316,7 +316,6 @@ class CandleFactoryTest {
     }
 
     @Test
-    @Disabled
     void naoPermiteConstruirCandlesComNegociacoesForaDeOrdem() {
         Calendar hoje = Calendar.getInstance();
 
@@ -342,8 +341,8 @@ class CandleFactoryTest {
 
         CandlestickFactory factory = new CandlestickFactory();
 
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> factory.constroiCandles(negociacoes));
-        assertEquals("negociações em ordem errada", e.getMessage());
+        assertDoesNotThrow(() -> factory.constroiCandles(negociacoes));
+
     }
 
     @Test

@@ -31,7 +31,7 @@ public class GeradorModeloGrafico {
 
         LineChartSeries chartSeries = new LineChartSeries(indicador.toString());
         for (int i = inicio; i <= fim; i++) {
-            BigDecimal valor = indicador.calcula(i, serie);
+            BigDecimal valor = indicador.calcula(i, serie,5);
             chartSeries.set(i, valor);
         }
         this.modeloGrafico.addSeries(chartSeries);

@@ -17,6 +17,11 @@ public class IndicadorFechamento implements Indicador{
     }
 
     @Override
+    public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
+        return serie.getCandle(posicao).getFechamento();
+    }
+
+    @Override
     public String toString() {
         return "Fechamento";
     }

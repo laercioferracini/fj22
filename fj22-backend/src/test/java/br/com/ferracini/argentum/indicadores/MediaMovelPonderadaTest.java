@@ -26,12 +26,12 @@ class MediaMovelPonderadaTest {
         BigDecimal ab = BigDecimal.valueOf(20.0).divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
         BigDecimal ac = BigDecimal.valueOf(26.0).divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
         BigDecimal ad = BigDecimal.valueOf(32.0).divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
-
+        int intervalo = 3;
         assertAll("Verificando média ponderada",
-                () -> assertEquals(aa, mmp.calcula(2, serie)),
-                () -> assertEquals(ab, mmp.calcula(3, serie)),
-                () -> assertEquals(ac, mmp.calcula(4, serie)),
-                () -> assertEquals(ad, mmp.calcula(5, serie))
+                () -> assertEquals(aa, mmp.calcula(2, serie,intervalo)),
+                () -> assertEquals(ab, mmp.calcula(3, serie,intervalo)),
+                () -> assertEquals(ac, mmp.calcula(4, serie,intervalo)),
+                () -> assertEquals(ad, mmp.calcula(5, serie,intervalo))
         );
     }
 }

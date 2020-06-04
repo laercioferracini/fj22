@@ -12,4 +12,5 @@ import java.math.BigDecimal;
 public interface Indicador {
     //Desing patterns Strategy
     BigDecimal calcula(int posicao, SerieTemporal serie);
+    BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo);
 }

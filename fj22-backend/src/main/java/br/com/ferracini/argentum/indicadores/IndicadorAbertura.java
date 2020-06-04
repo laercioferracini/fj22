@@ -16,6 +16,11 @@ public class IndicadorAbertura implements Indicador {
     }
 
     @Override
+    public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
+        return serie.getCandle(posicao).getAbertura();
+    }
+
+    @Override
     public String toString() {
         return "Abertura";
     }
