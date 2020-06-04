@@ -79,3 +79,5 @@ esqueça tudo e apenas ‘hackeie’”.*
 *“A única pessoa educada é aquela que aprendeu a aprender e a mudar.”*  
 – **Carl Rogers**
 
+*“Estamos todos na sarjeta, mas alguns de nós estão olhando para as estrelas.”*  
+– **Oscar Wilde**
