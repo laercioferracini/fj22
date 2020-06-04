@@ -1,3 +1,4 @@
+import br.com.ferracini.argentum.indicadores.MediaMovelPonderada;
 import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
 import br.com.ferracini.argentum.modelo.SerieTemporal;
 import org.primefaces.model.chart.LineChartModel;
@@ -16,13 +17,13 @@ public class GeradorModeloGrafico {
      * encapsulado, flexível, pouco acoplado e elegante: usa boas práticas da Orientação a Objetos
      */
     private final SerieTemporal serie;
-    private final int comeco;
+    private final int inicio;
     private final int fim;
     private final LineChartModel modeloGrafico;
 
-    public GeradorModeloGrafico(SerieTemporal serie, int comeco, int fim) {
+    public GeradorModeloGrafico(SerieTemporal serie, int inicio, int fim) {
         this.serie = serie;
-        this.comeco = comeco;
+        this.inicio = inicio;
         this.fim = fim;
         this.modeloGrafico = new LineChartModel();
     }
@@ -30,11 +31,23 @@ public class GeradorModeloGrafico {
     public void plotaMediaMovelSimples() {
         MediaMovelSimples indicador = new MediaMovelSimples();
         LineChartSeries chartSerie = new LineChartSeries("MMS Fechamento");
-        for (int i = comeco; i <= fim; i++) {
+        for (int i = inicio; i <= fim; i++) {
             BigDecimal valor = indicador.calcula(i, serie);
             chartSerie.set(i, valor);
         }
         this.modeloGrafico.addSeries(chartSerie);
+        this.modeloGrafico.setLegendPosition("w");
+        this.modeloGrafico.setTitle("Indicadores");
+    }
+
+    public void plotaMediaMovelPonderada() {
+        MediaMovelPonderada indicador = new MediaMovelPonderada();
+        LineChartSeries chartSeries = new LineChartSeries("MMP Fechamento");
+        for (int i = inicio; i <= fim; i++) {
+            BigDecimal valor = indicador.calcula(i, serie);
+            chartSeries.set(i, valor);
+        }
+        this.modeloGrafico.addSeries(chartSeries);
         this.modeloGrafico.setLegendPosition("w");
         this.modeloGrafico.setTitle("Indicadores");
     }

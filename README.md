@@ -68,13 +68,14 @@ esqueça tudo e apenas ‘hackeie’”.*
 – **Immanuel Kant**
 
 *“Nenhum homem é uma ilha isolada; cada homem é uma partícula do continente, uma parte da terra”*  
- – **John Donne**
+– **John Donne**
 
 *“Eu não temo computadores, eu temo é a falta deles”*  
- – **Isaac Asimov**
+– **Isaac Asimov**
  
 *“Nunca confie em um computador que você não pode jogar pela janela.”*  
 – **Steve Wozniak**
 
 *“A única pessoa educada é aquela que aprendeu a aprender e a mudar.”*  
 – **Carl Rogers**
+

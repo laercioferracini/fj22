@@ -23,12 +23,25 @@ public class ArgentumBean implements Serializable {
     private String media;
     private ChartModel modeloGrafico;
 
+    /**
+     * A <i>factory</i> é usada pelo {@code GeradorDeSerie} dos testes.
+     * A ideia é que criar um objeto {@code SerieTemporal} diretamente é complicado.
+     * Então criamos um <i>método de fábrica</i> que encapsula essas complicações
+     * e já devolve o objeto prontinho para uso.
+     * O padrão Builder é o que estamos usando na classe {@code GeradorModeloGrafico}.
+     * Queremos encapsular a criação complicada do modelo e que pode mudar depois com o tempo.
+     * Entra aí o <i>objeto construtor</i> da nossa classe Builder: seu único objetivo é
+     * descrever os passos para criação do nosso objeto final (o gráfico) e encapsular
+     * a complexidade disso.
+     */
     public ArgentumBean() {
         this.negociacoes = new ClientWebService().getNegociacoes();
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 2, serie.getUltimaPosicao());
         grafico.plotaMediaMovelSimples();
+        grafico.plotaMediaMovelPonderada();
+        grafico.getModeloGrafico().setAnimate(true);
         this.modeloGrafico = grafico.getModeloGrafico();
     }
 
