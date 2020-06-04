@@ -45,6 +45,7 @@ Exs: ```String```, classes ```wrapper```, ```BigInteger``` e ```BigDecimal```.
 * Item 47: Conheça e use as bibliotecas
 * Item 39: Faça cópias defensivas quando necessário.
 * Item 34: refira-se a objetos pela sua interface
+* Item 52: Refira a objetos pelas suas interfaces
 ---
 #### Quotes
 *“Na maioria dos casos, as pessoas, inclusive os facínoras, são muito mais ingênuas e simples do que

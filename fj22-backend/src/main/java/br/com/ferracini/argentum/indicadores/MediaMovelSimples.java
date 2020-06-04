@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * @project = fj22
  * @since <pre>29/05/2020</pre>
  */
-public class MediaMovelSimples {
+public class MediaMovelSimples implements Indicador {
 
     public BigDecimal calcula(int posicao, SerieTemporal serie) {
 
@@ -19,5 +19,10 @@ public class MediaMovelSimples {
             soma = soma.add(serie.getCandle(i).getFechamento());
         }
         return soma.divide(BigDecimal.valueOf(3), RoundingMode.HALF_DOWN);
+    }
+
+    @Override
+    public String toString() {
+        return "MMS de Fechamento";
     }
 }

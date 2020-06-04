@@ -1,3 +1,7 @@
+import br.com.ferracini.argentum.indicadores.IndicadorAbertura;
+import br.com.ferracini.argentum.indicadores.IndicadorFechamento;
+import br.com.ferracini.argentum.indicadores.MediaMovelPonderada;
+import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
 import br.com.ferracini.argentum.modelo.Candle;
 import br.com.ferracini.argentum.modelo.CandlestickFactory;
 import br.com.ferracini.argentum.modelo.Negociacao;
@@ -39,8 +43,10 @@ public class ArgentumBean implements Serializable {
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 2, serie.getUltimaPosicao());
-        grafico.plotaMediaMovelSimples();
-        grafico.plotaMediaMovelPonderada();
+        grafico.plotaIndicador(new MediaMovelSimples());
+        grafico.plotaIndicador(new MediaMovelPonderada());
+        grafico.plotaIndicador(new IndicadorFechamento());
+        grafico.plotaIndicador(new IndicadorAbertura());
         grafico.getModeloGrafico().setAnimate(true);
         this.modeloGrafico = grafico.getModeloGrafico();
     }

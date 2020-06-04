@@ -11,8 +11,9 @@ import java.math.RoundingMode;
  * @project = fj22
  * @since <pre>30/05/2020</pre>
  */
-public class MediaMovelPonderada {
+public class MediaMovelPonderada implements Indicador {
 
+    @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie) {
         BigDecimal soma = BigDecimal.ZERO;
         int peso = 3;
@@ -24,4 +25,8 @@ public class MediaMovelPonderada {
         return soma.divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
     }
 
+    @Override
+    public String toString() {
+        return "MMP de Fechamento";
+    }
 }

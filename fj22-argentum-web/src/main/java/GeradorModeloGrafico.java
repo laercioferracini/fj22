@@ -1,5 +1,4 @@
-import br.com.ferracini.argentum.indicadores.MediaMovelPonderada;
-import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
+import br.com.ferracini.argentum.indicadores.Indicador;
 import br.com.ferracini.argentum.modelo.SerieTemporal;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
@@ -28,21 +27,9 @@ public class GeradorModeloGrafico {
         this.modeloGrafico = new LineChartModel();
     }
 
-    public void plotaMediaMovelSimples() {
-        MediaMovelSimples indicador = new MediaMovelSimples();
-        LineChartSeries chartSerie = new LineChartSeries("MMS Fechamento");
-        for (int i = inicio; i <= fim; i++) {
-            BigDecimal valor = indicador.calcula(i, serie);
-            chartSerie.set(i, valor);
-        }
-        this.modeloGrafico.addSeries(chartSerie);
-        this.modeloGrafico.setLegendPosition("w");
-        this.modeloGrafico.setTitle("Indicadores");
-    }
+    public void plotaIndicador(Indicador indicador) {
 
-    public void plotaMediaMovelPonderada() {
-        MediaMovelPonderada indicador = new MediaMovelPonderada();
-        LineChartSeries chartSeries = new LineChartSeries("MMP Fechamento");
+        LineChartSeries chartSeries = new LineChartSeries(indicador.toString());
         for (int i = inicio; i <= fim; i++) {
             BigDecimal valor = indicador.calcula(i, serie);
             chartSeries.set(i, valor);
@@ -51,6 +38,7 @@ public class GeradorModeloGrafico {
         this.modeloGrafico.setLegendPosition("w");
         this.modeloGrafico.setTitle("Indicadores");
     }
+
 
     public LineChartModel getModeloGrafico() {
         return modeloGrafico;

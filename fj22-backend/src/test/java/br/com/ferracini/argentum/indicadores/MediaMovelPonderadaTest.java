@@ -20,7 +20,7 @@ class MediaMovelPonderadaTest {
     public void sequenciaSimplesDeCandles() {
         SerieTemporal serie =
                 GeradorDeSerie.criaSerie(1, 2, 3, 4, 5, 6);
-        MediaMovelPonderada mmp = new MediaMovelPonderada();
+        Indicador mmp = new MediaMovelPonderada();
         //ex: calcula(2): 1*1 + 2*2 +3*3 = 14. Divide por 6, da 14/6
         BigDecimal aa = BigDecimal.valueOf(14.0).divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
         BigDecimal ab = BigDecimal.valueOf(20.0).divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN);
