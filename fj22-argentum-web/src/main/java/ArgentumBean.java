@@ -42,7 +42,7 @@ public class ArgentumBean implements Serializable {
         this.negociacoes = new ClientWebService().getNegociacoes();
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
-        GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 1, serie.getUltimaPosicao());
+        GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
         grafico.plotaIndicador(new MediaMovelSimples());
         grafico.plotaIndicador(new MediaMovelPonderada());
         grafico.plotaIndicador(new IndicadorFechamento());

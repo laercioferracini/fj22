@@ -4,6 +4,7 @@ import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author lferracini
@@ -32,7 +33,7 @@ public class GeradorModeloGrafico {
         LineChartSeries chartSeries = new LineChartSeries(indicador.toString());
         for (int i = inicio; i <= fim; i++) {
             BigDecimal valor = indicador.calcula(i, serie,5);
-            chartSeries.set(i, valor);
+            chartSeries.set(i, valor.setScale(2, RoundingMode.HALF_DOWN));
         }
         this.modeloGrafico.addSeries(chartSeries);
         this.modeloGrafico.setLegendPosition("w");
