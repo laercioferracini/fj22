@@ -56,14 +56,21 @@ test {
 
 task deploy(type: Copy) {
     dependsOn(build)
+    dependsOn(test)
     println('Executando deploy')
 
-    println('Copiando arquivos')
+
 
     from "$buildDir/libs"
     include "*.war"
 
-    into "F:\\apache-tomcat-9.0.35\\webapps\\"
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+        println('Copiando arquivos')
+        into "F:\\apache-tomcat-9.0.35\\webapps\\"
+    }else{
+        //TODO linux tomcat_home
+        //into $TOMCAT_HOME+"\\webapps\\"
+    }
 
 }
 
