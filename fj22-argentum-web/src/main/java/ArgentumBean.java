@@ -53,32 +53,11 @@ public class ArgentumBean implements Serializable {
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
-        grafico.plotaIndicador(defineIndicador());
-        //grafico.plotaIndicador(new MediaMovelPonderada(new IndicadorFechamento()));
-        //grafico.plotaIndicador(new IndicadorFechamento());
-        //grafico.plotaIndicador(new IndicadorAbertura());
+        //Refactory com base no primeiro princípio SOLID - S — Single Responsiblity Principle (Princípio da responsabilidade única)
+        IndicadorFactory fabrica = new IndicadorFactory(nomeMedia, indicadorBase);
+        grafico.plotaIndicador(fabrica.defineIndicador());
         grafico.getModeloGrafico().setAnimate(true);
         this.modeloGrafico = grafico.getModeloGrafico();
-    }
-
-    private Indicador defineIndicador() {
-        LOGGER.info("Definindo Indicador");
-        if (indicadorBase == null || nomeMedia == null) return new MediaMovelSimples(new IndicadorAbertura());
-        String pacote = "br.com.ferracini.argentum.indicadores.";
-        try {
-            LOGGER.info(pacote + indicadorBase);
-            Class<?> classeIndicadorBase = Class.forName(pacote + indicadorBase);
-
-            Indicador indicadorBase = (Indicador) classeIndicadorBase.newInstance();
-            LOGGER.info(pacote + nomeMedia);
-            Class<?> classeMedia = Class.forName(pacote + nomeMedia);
-            Constructor<?> constructorMedia = classeMedia.getConstructor(Indicador.class);
-            Indicador indicador = (Indicador) constructorMedia.newInstance(indicadorBase);
-            return indicador;
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            LOGGER.severe("Erro ao definir indicador: " + e.getMessage());
-            throw new RuntimeException();
-        }
     }
 
     public String getIndicadorBase() {
