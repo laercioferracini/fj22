@@ -5,6 +5,7 @@ import org.primefaces.model.chart.LineChartSeries;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.logging.Logger;
 
 /**
  * @author lferracini
@@ -12,6 +13,7 @@ import java.math.RoundingMode;
  * @since <pre>02/06/2020</pre>
  */
 public class GeradorModeloGrafico {
+    private static final Logger LOGGER = Logger.getLogger(GeradorModeloGrafico.class.getName());
     /**
      * GeradorModeloGrafico nem dá para saber como ele gera o modelo. É um código
      * encapsulado, flexível, pouco acoplado e elegante: usa boas práticas da Orientação a Objetos
@@ -42,6 +44,7 @@ public class GeradorModeloGrafico {
 
 
     public LineChartModel getModeloGrafico() {
+        LOGGER.info("getModeloGrafico()");
         return modeloGrafico;
     }
 }

@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author lferracini
@@ -20,6 +21,8 @@ import java.util.List;
 @ManagedBean
 @ViewScoped
 public class ArgentumBean implements Serializable {
+    private final static Logger LOGGER = Logger.getLogger(ArgentumBean.class.getName());
+
     private List<Negociacao> negociacoes;
     private ChartModel modeloGrafico;
     private String nomeMedia;
@@ -38,11 +41,11 @@ public class ArgentumBean implements Serializable {
      */
     public ArgentumBean() {
         this.negociacoes = new ClientWebService().getNegociacoes();
-        geraGrafico();
+        setGeraGrafico();
     }
 
-    private void geraGrafico() {
-        System.out.println("Plotando: " + nomeMedia + " de " + indicadorBase);
+    private void setGeraGrafico() {
+        LOGGER.info("Plotando: " + nomeMedia + " de " + indicadorBase);
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
@@ -55,26 +58,32 @@ public class ArgentumBean implements Serializable {
     }
 
     public String getIndicadorBase() {
+        LOGGER.info("getIndicadorBase()");
         return indicadorBase;
     }
 
     public void setIndicadorBase(String nomeIndicadorBase) {
+        LOGGER.info("setIndicadorBase()");
         this.indicadorBase = nomeIndicadorBase;
     }
 
     public String getNomeMedia() {
+        LOGGER.info("getNomeMedia()");
         return nomeMedia;
     }
 
     public void setNomeMedia(String nomeMedia) {
+        LOGGER.info("nomeMedia()");
         this.nomeMedia = nomeMedia;
     }
 
     public List<Negociacao> getNegociacoes() {
+        LOGGER.info("getNegociacoes()");
         return negociacoes;
     }
 
     public ChartModel getModeloGrafico() {
+        LOGGER.info("getModeloGrafico()");
         return modeloGrafico;
     }
 }
