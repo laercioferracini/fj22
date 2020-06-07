@@ -37,3 +37,15 @@ build
 /negociacao.xml
 /fj22-argentum-web/.idea/
 /fj22-argentum-web/negociacao1.xml
+/.classpath
+/.project
+/.settings/
+/fj22-backend/bin/
+/fj22-argentum-web/bin/
+/fj22-argentum-web/.settings/
+/fj22-argentum-web/.classpath
+/fj22-argentum-web/.project
+/fj22-backend/.classpath
+/fj22-backend/.project
+/fj22-backend/.settings/org.eclipse.buildship.core.prefs
+/fj22-backend/.settings/org.eclipse.jdt.core.prefs
