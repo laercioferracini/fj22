@@ -1,7 +1,3 @@
-import br.com.ferracini.argentum.indicadores.Indicador;
-import br.com.ferracini.argentum.indicadores.IndicadorAbertura;
-import br.com.ferracini.argentum.indicadores.IndicadorFechamento;
-import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
 import br.com.ferracini.argentum.modelo.Candle;
 import br.com.ferracini.argentum.modelo.CandlestickFactory;
 import br.com.ferracini.argentum.modelo.Negociacao;
@@ -12,8 +8,6 @@ import org.primefaces.model.chart.ChartModel;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,6 +25,7 @@ public class ArgentumBean implements Serializable {
     private ChartModel modeloGrafico;
     private String nomeMedia;
     private String indicadorBase;
+    private String titulo;
 
     /**
      * A <i>factory</i> é usada pelo {@code GeradorDeSerie} dos testes.
@@ -52,7 +47,7 @@ public class ArgentumBean implements Serializable {
         LOGGER.info("Plotando: " + nomeMedia + " de " + indicadorBase);
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
-        GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
+        GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao(), titulo);
         //Refactory com base no primeiro princípio SOLID - S — Single Responsiblity Principle (Princípio da responsabilidade única)
         IndicadorFactory fabrica = new IndicadorFactory(nomeMedia, indicadorBase);
         grafico.plotaIndicador(fabrica.defineIndicador());
@@ -66,7 +61,7 @@ public class ArgentumBean implements Serializable {
     }
 
     public void setIndicadorBase(String nomeIndicadorBase) {
-        LOGGER.info("setIndicadorBase()");
+        LOGGER.info("setIndicadorBase()" + nomeIndicadorBase);
         this.indicadorBase = nomeIndicadorBase;
     }
 
@@ -76,7 +71,7 @@ public class ArgentumBean implements Serializable {
     }
 
     public void setNomeMedia(String nomeMedia) {
-        LOGGER.info("nomeMedia()");
+        LOGGER.info("nomeMedia()" + nomeMedia);
         this.nomeMedia = nomeMedia;
     }
 
@@ -88,5 +83,13 @@ public class ArgentumBean implements Serializable {
     public ChartModel getModeloGrafico() {
         LOGGER.info("getModeloGrafico()");
         return modeloGrafico;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 }

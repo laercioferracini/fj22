@@ -82,3 +82,6 @@ esqueça tudo e apenas ‘hackeie’”.*
 
 *“Estamos todos na sarjeta, mas alguns de nós estão olhando para as estrelas.”*  
 – **Oscar Wilde**
+
+*“Além da magia negra, há apenas automação e mecanização”*  
+– **Federico Garcia Lorca**

@@ -22,12 +22,14 @@ public class GeradorModeloGrafico {
     private final int inicio;
     private final int fim;
     private final LineChartModel modeloGrafico;
+    private final String tituloGrafico;
 
-    public GeradorModeloGrafico(SerieTemporal serie, int inicio, int fim) {
+    public GeradorModeloGrafico(SerieTemporal serie, int inicio, int fim, String tituloGrafico) {
         this.serie = serie;
         this.inicio = inicio;
         this.fim = fim;
         this.modeloGrafico = new LineChartModel();
+        this.tituloGrafico = tituloGrafico;
     }
 
     public void plotaIndicador(Indicador indicador) {
@@ -39,7 +41,7 @@ public class GeradorModeloGrafico {
         }
         this.modeloGrafico.addSeries(chartSeries);
         this.modeloGrafico.setLegendPosition("w");
-        this.modeloGrafico.setTitle("Indicadores");
+        this.modeloGrafico.setTitle(tituloGrafico);
     }
 
 

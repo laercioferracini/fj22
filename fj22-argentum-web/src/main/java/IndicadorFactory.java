@@ -1,5 +1,4 @@
 import br.com.ferracini.argentum.indicadores.Indicador;
-import br.com.ferracini.argentum.indicadores.IndicadorAbertura;
 import br.com.ferracini.argentum.indicadores.IndicadorFechamento;
 import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
 
@@ -16,8 +15,8 @@ public class IndicadorFactory {
 
     private static final Logger LOGGER = Logger.getLogger(IndicadorFactory.class.getName());
 
-    private String nomeMedia;
-    private String indicadorBase;
+    private final String nomeMedia;
+    private final String indicadorBase;
 
     public IndicadorFactory(String nomeMedia, String indicadorBase) {
         this.nomeMedia = nomeMedia;

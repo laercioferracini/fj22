@@ -21,22 +21,31 @@
 
     <br/>
     <br/>
-    <h:form>
-        <h:panelGrid columns="5">
-            <h:outputLabel value="Media Móvel: "/>
-            <p:selectOneButton value="#{argentumBean.nomeMedia}">
-                <f:selectItem itemLabel="Simples" itemValue="MediaMovelSimples"/>
-                <f:selectItem itemLabel="Ponderada" itemValue="MediaMovelPonderada"/>
-            </p:selectOneButton>
+    <p:messages autoUpdate="true"/>
+    <h:form id="dadosGrafico">
+        <p:panel header="Graficos">
+            <p:messages>
+                <p:autoUpdate/>
+            </p:messages>
+            <h:panelGrid columns="6" id="grid">
 
-            <h:outputLabel value="Indicador base: "/>
-            <p:selectOneButton value="#{argentumBean.indicadorBase}">
-                <f:selectItem itemLabel="Abertura" itemValue="IndicadorAbertura"/>
-                <f:selectItem itemLabel="Fechamento" itemValue="IndicadorFechamento"/>
-            </p:selectOneButton>
+                <h:outputLabel value="Título Gráfico: "/>
+                <p:inputText id="titulo" required="true" value="#{argentumBean.titulo}"/>
+                <h:outputLabel value="Media Móvel: "/>
+                <p:selectOneButton value="#{argentumBean.nomeMedia}">
+                    <f:selectItem id="mediaMovelSimples" itemLabel="Simples" itemValue="MediaMovelSimples"/>
+                    <f:selectItem id="mediaMovelPonderada" itemLabel="Ponderada" itemValue="MediaMovelPonderada"/>
+                </p:selectOneButton>
 
-            <p:commandButton value="Gerar gráfico"  update=":grafico" action="#{argentumBean.geraGrafico}"/>
-        </h:panelGrid>
+                <h:outputLabel value="Indicador base: "/>
+                <p:selectOneButton value="#{argentumBean.indicadorBase}">
+                    <f:selectItem id="indicadorAbertura" itemLabel="Abertura" itemValue="IndicadorAbertura"/>
+                    <f:selectItem id="indicadorFechamento" itemLabel="Fechamento" itemValue="IndicadorFechamento"/>
+                </p:selectOneButton>
+
+            </h:panelGrid>
+            <p:commandButton id="gerarGrafico" value="Gerar gráfico" update=":grafico" action="#{argentumBean.geraGrafico}"/>
+        </p:panel>
     </h:form>
     <p:chart type="line" id="grafico" model="#{argentumBean.modeloGrafico}"/>
     <h:form id="listaNegociacao">
