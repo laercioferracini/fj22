@@ -18,9 +18,6 @@ public class MediaMovelSimples implements Indicador {
         indicador = outroIndicador;
     }
 
-    public MediaMovelSimples() {
-    }
-
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
         if (intervalo < 0) throw new IllegalArgumentException("Valor menor que zero");
         BigDecimal soma = BigDecimal.ZERO;
@@ -35,6 +32,6 @@ public class MediaMovelSimples implements Indicador {
 
     @Override
     public String toString() {
-        return "MMS de Fechamento";
+        return "MMS de " + indicador.toString();
     }
 }

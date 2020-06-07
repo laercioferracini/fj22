@@ -11,6 +11,9 @@ import java.math.BigDecimal;
  */
 public class IndicadorAbertura implements Indicador {
 
+    public IndicadorAbertura() {
+    }
+
     @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
         return serie.getCandle(posicao).getAbertura();
@@ -18,6 +21,6 @@ public class IndicadorAbertura implements Indicador {
 
     @Override
     public String toString() {
-        return "Abertura";
+        return "Indicador Abertura";
     }
 }

@@ -9,7 +9,10 @@ import java.math.BigDecimal;
  * @project = fj22
  * @since <pre>04/06/2020</pre>
  */
-public class IndicadorFechamento implements Indicador{
+public class IndicadorFechamento implements Indicador {
+
+    public IndicadorFechamento() {
+    }
 
     @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
@@ -18,6 +21,6 @@ public class IndicadorFechamento implements Indicador{
 
     @Override
     public String toString() {
-        return "Fechamento";
+        return "Indicador Fechamento";
     }
 }

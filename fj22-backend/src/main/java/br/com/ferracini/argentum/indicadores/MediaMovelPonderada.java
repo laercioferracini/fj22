@@ -19,10 +19,6 @@ public class MediaMovelPonderada implements Indicador {
         this.outroIndicador = outroIndicador;
     }
 
-    public MediaMovelPonderada() {
-
-    }
-
     @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
         BigDecimal soma = BigDecimal.ZERO;
@@ -46,6 +42,6 @@ public class MediaMovelPonderada implements Indicador {
 
     @Override
     public String toString() {
-        return "MMP de Fechamento";
+        return "MMP de " + outroIndicador.toString();
     }
 }

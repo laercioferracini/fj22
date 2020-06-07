@@ -1,3 +1,5 @@
+import br.com.ferracini.argentum.indicadores.Indicador;
+import br.com.ferracini.argentum.indicadores.IndicadorAbertura;
 import br.com.ferracini.argentum.indicadores.IndicadorFechamento;
 import br.com.ferracini.argentum.indicadores.MediaMovelSimples;
 import br.com.ferracini.argentum.modelo.Candle;
@@ -8,8 +10,10 @@ import br.com.ferracini.argentum.modelo.reader.ClientWebService;
 import org.primefaces.model.chart.ChartModel;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -41,20 +45,40 @@ public class ArgentumBean implements Serializable {
      */
     public ArgentumBean() {
         this.negociacoes = new ClientWebService().getNegociacoes();
-        setGeraGrafico();
+        geraGrafico();
     }
 
-    private void setGeraGrafico() {
+    public void geraGrafico() {
         LOGGER.info("Plotando: " + nomeMedia + " de " + indicadorBase);
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
-        grafico.plotaIndicador(new MediaMovelSimples(new IndicadorFechamento()));
+        grafico.plotaIndicador(defineIndicador());
         //grafico.plotaIndicador(new MediaMovelPonderada(new IndicadorFechamento()));
         //grafico.plotaIndicador(new IndicadorFechamento());
         //grafico.plotaIndicador(new IndicadorAbertura());
         grafico.getModeloGrafico().setAnimate(true);
         this.modeloGrafico = grafico.getModeloGrafico();
+    }
+
+    private Indicador defineIndicador() {
+        LOGGER.info("Definindo Indicador");
+        if (indicadorBase == null || nomeMedia == null) return new MediaMovelSimples(new IndicadorAbertura());
+        String pacote = "br.com.ferracini.argentum.indicadores.";
+        try {
+            LOGGER.info(pacote + indicadorBase);
+            Class<?> classeIndicadorBase = Class.forName(pacote + indicadorBase);
+
+            Indicador indicadorBase = (Indicador) classeIndicadorBase.newInstance();
+            LOGGER.info(pacote + nomeMedia);
+            Class<?> classeMedia = Class.forName(pacote + nomeMedia);
+            Constructor<?> constructorMedia = classeMedia.getConstructor(Indicador.class);
+            Indicador indicador = (Indicador) constructorMedia.newInstance(indicadorBase);
+            return indicador;
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+            LOGGER.severe("Erro ao definir indicador: " + e.getMessage());
+            throw new RuntimeException();
+        }
     }
 
     public String getIndicadorBase() {
