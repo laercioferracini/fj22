@@ -19,7 +19,7 @@ class MediaMovelSimplesTest {
     @Test
     void sequenciaSimplesDeCandles() {
         SerieTemporal serie = GeradorDeSerie.criaSerie(1, 2, 3, 4, 3, 4, 5, 4, 3);
-        MediaMovelSimples mms = new MediaMovelSimples();
+        MediaMovelSimples mms = new MediaMovelSimples(new IndicadorFechamento());
 
         BigDecimal aa = BigDecimal.valueOf(10.0).divide(BigDecimal.valueOf(3), RoundingMode.HALF_DOWN);
         BigDecimal ab = BigDecimal.valueOf(13.0).divide(BigDecimal.valueOf(3), RoundingMode.HALF_DOWN);
@@ -40,7 +40,7 @@ class MediaMovelSimplesTest {
     void sequenciaSimplesDeCandlesComIntervaloParametrizavel() {
 
         SerieTemporal serie = GeradorDeSerie.criaSerie(1, 2, 3, 4, 3, 4, 5, 4, 3);
-        MediaMovelSimples mms = new MediaMovelSimples();
+        MediaMovelSimples mms = new MediaMovelSimples(new IndicadorFechamento());
         int intervalo = 5;
         BigDecimal aa = BigDecimal.valueOf(16.0).divide(BigDecimal.valueOf(intervalo), RoundingMode.HALF_DOWN);
         BigDecimal ab = BigDecimal.valueOf(19.0).divide(BigDecimal.valueOf(intervalo), RoundingMode.HALF_DOWN);

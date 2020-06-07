@@ -10,10 +10,6 @@ import java.math.BigDecimal;
  * @since <pre>04/06/2020</pre>
  */
 public class IndicadorAbertura implements Indicador {
-    @Override
-    public BigDecimal calcula(int posicao, SerieTemporal serie) {
-        return serie.getCandle(posicao).getAbertura();
-    }
 
     @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {

@@ -13,17 +13,14 @@ import java.math.RoundingMode;
  */
 public class MediaMovelPonderada implements Indicador {
 
-    @Override
-    public BigDecimal calcula(int posicao, SerieTemporal serie) {
-        BigDecimal soma = BigDecimal.ZERO;
-        int peso = 3;
-        for (int i = posicao; i > posicao - 3; i--) {
-            if (i < 0) break;
-            Candle c = serie.getCandle(i);
-            soma = soma.add(c.getFechamento().multiply(BigDecimal.valueOf(peso)));
-            peso--;
-        }
-        return soma.divide(BigDecimal.valueOf(fatorial(6)), RoundingMode.HALF_DOWN);
+    private Indicador outroIndicador;
+
+    public MediaMovelPonderada(Indicador outroIndicador) {
+        this.outroIndicador = outroIndicador;
+    }
+
+    public MediaMovelPonderada() {
+
     }
 
     @Override
@@ -33,7 +30,7 @@ public class MediaMovelPonderada implements Indicador {
         for (int i = posicao; i > posicao - intervalo; i--) {
             if (i < 0) break;
             Candle c = serie.getCandle(i);
-            soma = soma.add(c.getFechamento().multiply(BigDecimal.valueOf(peso)));
+            soma = soma.add(outroIndicador.calcula(i, serie, intervalo).multiply(BigDecimal.valueOf(peso)));//soma.add(c.getFechamento().multiply(BigDecimal.valueOf(peso)));
             peso--;
         }
         return soma.divide(BigDecimal.valueOf(fatorial(intervalo)), RoundingMode.HALF_DOWN);

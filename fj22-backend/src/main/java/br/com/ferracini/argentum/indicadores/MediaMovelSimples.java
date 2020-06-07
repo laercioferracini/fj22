@@ -12,16 +12,13 @@ import java.math.RoundingMode;
  */
 public class MediaMovelSimples implements Indicador {
 
-    @Override
-    public BigDecimal calcula(int posicao, SerieTemporal serie) {
-        BigDecimal soma = BigDecimal.ZERO;
+    private Indicador indicador;
 
-        for (int i = posicao; i > posicao - 3; i--) {
-            if (i < 0) break;
-            soma = soma.add(serie.getCandle(i).getFechamento());
+    public MediaMovelSimples(Indicador outroIndicador) {
+        indicador = outroIndicador;
+    }
 
-        }
-        return soma.divide(BigDecimal.valueOf(3), RoundingMode.HALF_DOWN);
+    public MediaMovelSimples() {
     }
 
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
@@ -30,7 +27,7 @@ public class MediaMovelSimples implements Indicador {
 
         for (int i = posicao; i > posicao - intervalo; i--) {
             if (i < 0) break;
-            soma = soma.add(serie.getCandle(i).getFechamento());
+            soma = soma.add(indicador.calcula(i, serie, intervalo)); //soma.add(serie.getCandle(i).getFechamento());
 
         }
         return soma.divide(BigDecimal.valueOf(intervalo), RoundingMode.HALF_DOWN);

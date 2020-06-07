@@ -12,11 +12,6 @@ import java.math.BigDecimal;
 public class IndicadorFechamento implements Indicador{
 
     @Override
-    public BigDecimal calcula(int posicao, SerieTemporal serie) {
-        return serie.getCandle(posicao).getFechamento();
-    }
-
-    @Override
     public BigDecimal calcula(int posicao, SerieTemporal serie, int intervalo) {
         return serie.getCandle(posicao).getFechamento();
     }

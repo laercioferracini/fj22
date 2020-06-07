@@ -43,8 +43,8 @@ public class ArgentumBean implements Serializable {
         List<Candle> candles = new CandlestickFactory().constroiCandles(negociacoes);
         SerieTemporal serie = new SerieTemporal(candles);
         GeradorModeloGrafico grafico = new GeradorModeloGrafico(serie, 0, serie.getUltimaPosicao());
-        grafico.plotaIndicador(new MediaMovelSimples());
-        grafico.plotaIndicador(new MediaMovelPonderada());
+        grafico.plotaIndicador(new MediaMovelSimples(new IndicadorFechamento()));
+        grafico.plotaIndicador(new MediaMovelPonderada(new IndicadorFechamento()));
         grafico.plotaIndicador(new IndicadorFechamento());
         grafico.plotaIndicador(new IndicadorAbertura());
         grafico.getModeloGrafico().setAnimate(true);
