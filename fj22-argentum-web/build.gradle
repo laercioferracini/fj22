@@ -52,7 +52,15 @@ test {
         'aceitacao': false
     ]
 }
+task setExecutable(type: Exec) {
 
+    if (System.getProperty("os.name").toUpperCase().contains("LINUX")) {
+        workingDir 'driver/'
+
+        executable("chmod")
+        args("+x", "geckodriver")
+    }
+}
 task deploy(type: Copy) {
     dependsOn(build)
     println('Executando deploy')
