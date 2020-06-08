@@ -56,7 +56,9 @@ task deploy(type: Copy) {
 
     from "$buildDir/libs"
     include "*.war"
-
+    
+    print "OS: "+System.getProperty("os.name").toUpperCase()
+    
     if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
         println('Copiando arquivos')
         into "F:\\apache-tomcat-9.0.35\\webapps\\"
