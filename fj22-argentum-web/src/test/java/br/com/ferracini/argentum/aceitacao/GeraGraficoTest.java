@@ -48,6 +48,7 @@ public class GeraGraficoTest {
     }
 
     @Test
+    @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
     void testeAoGerarGraficoSemTituloUmaMensagemEhApresentada() throws InterruptedException {
 
         driver.navigate().to(URL);
@@ -61,6 +62,7 @@ public class GeraGraficoTest {
     }
 
     @Test
+    @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
     void testeGerarGraficoComTitulo() throws InterruptedException {
         driver.navigate().to(URL);
         WebElement webElement = driver.findElement(By.id("dadosGrafico:titulo"));
