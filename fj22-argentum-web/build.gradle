@@ -49,7 +49,7 @@ test {
     // Use junit platform for unit tests
     useJUnitPlatform()
     systemProperties = [
-        'aceitacao': true
+        'aceitacao': false
     ]
 }
 
@@ -60,7 +60,7 @@ task deploy(type: Copy) {
     from "$buildDir/libs"
     include "*.war"
     
-    print "OS: "+System.getProperty("os.name").toUpperCase()
+    println "OS: "+System.getProperty("os.name").toUpperCase()
     
     if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
         println('Copiando arquivos')
