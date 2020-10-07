@@ -74,8 +74,9 @@ task deploy(type: Copy) {
         println('Copiando arquivos')
         into "F:\\apache-tomcat-9.0.35\\webapps\\"
     } else {
-        //TODO linux tomcat_home
-        //into $TOMCAT_HOME+"\\webapps\\"
+
+        println('Copiando arquivos')
+        into "/opt/tomcat/webapps/"
     }
 
 }
