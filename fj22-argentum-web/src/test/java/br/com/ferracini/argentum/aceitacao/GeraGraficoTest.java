@@ -2,6 +2,7 @@ package br.com.ferracini.argentum.aceitacao;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 import org.openqa.selenium.By;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @project = fj22
  * @since <pre>07/06/2020</pre>
  */
+@Disabled
 public class GeraGraficoTest {
 
     private static final String URL = "http://localhost:8080/fj22-argentum-web-1.0-SNAPSHOT/index.xhtml";
