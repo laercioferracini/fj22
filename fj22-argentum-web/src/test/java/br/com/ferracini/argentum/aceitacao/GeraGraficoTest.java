@@ -26,53 +26,53 @@ public class GeraGraficoTest {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    @BeforeAll
-    static void setDriver() {
+//     @BeforeAll
+//     static void setDriver() {
 
-        String os = System.getProperty("os.name").toUpperCase();
-        String fileSeparator = System.getProperty("file.separator");
-        String driverFile = "driver".concat(fileSeparator);
+//         String os = System.getProperty("os.name").toUpperCase();
+//         String fileSeparator = System.getProperty("file.separator");
+//         String driverFile = "driver".concat(fileSeparator);
 
-        if (os.contains("LINUX")) {
-            driverFile = driverFile.concat("geckodriver");
-        } else if (os.contains("WINDOWS")) {
-            driverFile = driverFile.concat("geckodriver.exe");
-        }
+//         if (os.contains("LINUX")) {
+//             driverFile = driverFile.concat("geckodriver");
+//         } else if (os.contains("WINDOWS")) {
+//             driverFile = driverFile.concat("geckodriver.exe");
+//         }
 
-        System.setProperty("webdriver.gecko.driver", driverFile);
-        driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 10);
-    }
+//         System.setProperty("webdriver.gecko.driver", driverFile);
+//         driver = new FirefoxDriver();
+//         wait = new WebDriverWait(driver, 10);
+//     }
 
-    @AfterAll
-    static void tearDown() {
-        if (driver != null)
-            driver.quit();
-    }
+//     @AfterAll
+//     static void tearDown() {
+//         if (driver != null)
+//             driver.quit();
+//     }
 
-    @Test
-    @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
-    void testeAoGerarGraficoSemTituloUmaMensagemEhApresentada() throws InterruptedException {
+//     @Test
+//     @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
+//     void testeAoGerarGraficoSemTituloUmaMensagemEhApresentada() throws InterruptedException {
 
-        driver.navigate().to(URL);
-        WebElement webElement = driver.findElement(By.id("dadosGrafico:titulo"));
+//         driver.navigate().to(URL);
+//         WebElement webElement = driver.findElement(By.id("dadosGrafico:titulo"));
 
-        webElement.sendKeys("");
-        webElement.submit();
-        Thread.sleep(2000);
-        boolean existeMensagem = driver.getPageSource().contains("Erro de validação");
-        assertTrue(existeMensagem);
-    }
+//         webElement.sendKeys("");
+//         webElement.submit();
+//         Thread.sleep(2000);
+//         boolean existeMensagem = driver.getPageSource().contains("Erro de validação");
+//         assertTrue(existeMensagem);
+//     }
 
-    @Test
-    @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
-    void testeGerarGraficoComTitulo() throws InterruptedException {
-        driver.navigate().to(URL);
-        WebElement webElement = driver.findElement(By.id("dadosGrafico:titulo"));
-        webElement.sendKeys("GraficoMediaSimples");
-        driver.findElement(By.id("dadosGrafico:gerarGrafico")).click();
-        webElement.submit();
-        assertTrue(driver.getPageSource().contains("Gráficos"));
-    }
+//     @Test
+//     @DisabledIfSystemProperty(named = "aceitacao", matches = "false")
+//     void testeGerarGraficoComTitulo() throws InterruptedException {
+//         driver.navigate().to(URL);
+//         WebElement webElement = driver.findElement(By.id("dadosGrafico:titulo"));
+//         webElement.sendKeys("GraficoMediaSimples");
+//         driver.findElement(By.id("dadosGrafico:gerarGrafico")).click();
+//         webElement.submit();
+//         assertTrue(driver.getPageSource().contains("Gráficos"));
+//     }
 
 }
