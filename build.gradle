@@ -9,6 +9,18 @@ allprojects {
             println "I'm $task.project.name"
         }
     }
+    dependencies {
+        // This dependency is used by the application.
+        implementation 'com.google.guava:guava:28.2-jre'
+        implementation 'com.thoughtworks.xstream:xstream:1.4.12'
+
+
+        // Use JUnit Jupiter API for testing.
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+
+        // Use JUnit Jupiter Engine for testing.
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    }
 }
 subprojects {
     version = '0.0.1-SNAPSHOT'

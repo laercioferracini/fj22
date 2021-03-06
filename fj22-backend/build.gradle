@@ -19,19 +19,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.2-jre'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.12'
-    implementation group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
-
-    // Use JUnit Jupiter API for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
-
-    // Use JUnit Jupiter Engine for testing.
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
-}
-
 application {
     // Define the main class for the application.
     mainClassName = 'br.com.ferracini.argentum.modelo.Demo'
