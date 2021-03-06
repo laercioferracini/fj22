@@ -1,4 +1,4 @@
-![build](https://github.com/laercioferracini/fj22/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=master)
+![build](https://github.com/laercioferracini/fj22/workflows/build/badge.svg?branch=master)
 
 # FJ22 estudos 
 
